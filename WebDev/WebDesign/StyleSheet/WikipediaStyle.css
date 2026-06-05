@@ -1,0 +1,119 @@
+/*
+Background:  #0a0a0f  → deep dark midnight
+Primary text: #ffffff  → clean white
+Secondary text: #a0a0b0 → soft gray for less important text
+Accent color: #6c63ff  → purple glow (modern and techy)
+Accent glow:  #6c63ff40 → transparent purple for effects
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    background: radial-gradient(
+        ellipse at center,
+        #1a1a2e 0%,
+        #0a0a0f 70%
+    );
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 50px;
+    letter-spacing: 5px;
+    background: linear-gradient(
+        90deg, 
+        #6c63ff, 
+        #a78bfa);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+h2 {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    color: #6c63ff;
+    margin-bottom: 15px;
+}
+h3 {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: #a78bfa;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 0 40px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 250px;
+    background-color: #ffffff08;
+    border: 1px solid #6c63ff30;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.box {
+    margin: 20px 35px;
+}
+
+li {
+    list-style: none;
+    padding: 8px 0;
+    color: #a0a0b0;
+    font-size: 0.95rem;
+}
+
+a {
+    color: #6c63ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #a78bfa;
+}
+
+input {
+    background-color: #ffffff10;
+    border: 1px solid #6c63ff50;
+    border-radius: 8px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    outline: none;
+    transition: border 0.3s ease;
+}
+input:focus {
+    border: 1px solid #6c63ff;
+}
+
+#btn {
+    background: linear-gradient(
+        90deg,
+        #6c63ff,
+        #a78bfa
+    );
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-family: 'Oswalrd', sans-serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #6c63ff60;
+}

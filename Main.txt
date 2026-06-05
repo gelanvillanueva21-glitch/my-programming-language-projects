@@ -1,0 +1,18 @@
+this algorith was solve using tree method
+void Test(int n) { - T(n)
+    if (n > 0) {
+        for ( i = 1, i < n, i = i * 2) {
+            printf("%d", i); - log n
+        }
+        Test(int n - 1); - T(n-1)
+    }
+}
+Total: T(n) = T(n-1) + log n
+so the time taken by on this algorithm is log n! which is an Upper bound so it call Big O(n log n)
+Induction method
+T(n) = T(n-1) + log n 
+T(n) = [T(n-2) + log(n-1)] + log n
+Simplified: T(n-2) + log (n-1)+log n
+Subtitute: T(n) = [T(n-3) + log (n - 2)] + log(n-1) + log n
+T(n) =T(n-3) + log(n-2) + log(n-1) + log n
+T(n) = T(n-k) + log 1+ log 2+ ... + log(n-1) + log n

@@ -1,0 +1,152 @@
+Professor Abdul Bari
+
+The difference between Algorithm and Program
+
+Algorithm:
+          -> Design
+          -> Domain Knowledge
+          -> Any Language
+          -> Analyze
+
+Program:
+        -> Implementation
+        -> Programmer
+        -> Programing Language
+        -> Testing
+
+Conclusion:
+    In conclusion Algorithm is the person who design the perfect match to a Program
+it can explain it by any comfort language they analyze it if it is the best on time complexity how effecient
+the design was to a program and space complexity which is how you use a memory on a computer
+using the algorithm design. While Program is the one who implements the design to a readable code any language of
+of Program then test it multiple times to get the perfect design and working algorithm in a code.
+
+
+Priori Analysis:
+        -> Algorithm
+        -> Independent of Language
+        -> Hardware Independent
+        -> Time and Space Function
+
+Posteriori Testing:
+        -> Program
+        -> Language Dependent
+        -> Hardware Dependent
+        -> Watch Time and Bytes
+
+Conclusion:
+    So Priori Analysis like I said in the last explainaton in vid 1, is that it analyze time and space, every
+milisecond, minute, hour or seconds in an algorithm, and Priori Analysis is Independent language
+and aslwell as the Hardware. About the Posteriori testing is where a program execute and test the algorithm that
+was created, and check it how it works and how much it consumed in bytes and time, and so Posteriori is Dependent to
+Hardware.
+
+
+Characteristice Of Algorithm:
+        -> Input (Should have an input of zero or more)
+        -> Output (Algorithm always should have an output atleast one)
+        -> Definiteness (Code must understandable)
+        -> Finiteness (Algorithm is limited its should stop the moment it finished)
+        -> Effectiveness (Must not have an unecessary experiment that won't be use anyway
+            in the program of algorithm)
+
+Conclusion:
+    Conclusion for everything is algorithm must always has an input of zero or more, then it has atleast
+one output, and it must be understandable avoiding unecessary thing something like that. 
+and it must be limited not unlimited because algorithm should stop at the moment it finished the pogram or the testing
+Effectiveness as I said must not have an unecessary experiment that will ended up waste of effort and will ended up not
+benefiting to the algorithm.........................
+
+
+How To Analyze an Algorithm:
+        -> Time (How much time does it takes to run the algorithm)
+        -> Space (how much memory used by an algorithm)
+        -> Network Consumption (How much data is done from a server either netword or cloud)
+        -> Power Consumption (Important for tablet if purpose to create applction)
+        -> CPU Registers
+
+        every statement we do is using a time of 1 unit of time which is a constant
+it is fixed, and every word or variables is also a 1 which is constand again
+
+    So in conclusion to analyze an algorith must be step by step with checkin how 
+effecient the time consuming in algorithm program, like how deos it takes to finish the program
+or how you define it detial and design it. Space how much the algorithm used in memory of a computer or android
+must analyze the memory consumed. then other, one of them is Networkconsumption, how well it handle the data and
+how much it is done in a server or cloud, then power consumption because if you create like an application for
+tablet or android it must be know how it consumed in power, and lasty CPU Registers I forget abt this.
+
+
+    every statement in the code and every variable is having purpose on it and has a memory used and
+like an algorithm to analyze it we must read the code line by line by he execution of the code, and every statement 
+is constant which is the unit of 1. every loop is has a value like n + 1 or n x n.
+
+
+    space complexity is how much used in memory while executing the code and every line of code has used
+some memory which is it analyze and read and to put an overall how much it cost it on the memory 
+in specific program.
+
+
+    it talks all about loop trough multiple iteration it may be divide, increamenting, decrreamenting and multiplication.
+it discussed some of theory about time complexity and has a different approuch of them, like O(log log n) and O(n) these are
+big common of the order of O or big O notation. Furthermore he talk a lot of loop it may nested, or independent loop
+and in one o f the last video which is the summarry of loops that he use theoritize, it determining the complexity of each big o 
+notation
+
+
+Asymptotic Notation:
+    Big O Notation - [it represent the upper bound of a function. it provides a worst case scenario or a growth limit for a function]
+    Big Omega Notation - [represent the lower bound of a function. it defines a growth floor]
+    Theta Notation - [it represent the average bound of a function, essentially stating that the function is both upper
+                    and lower bounded by the same growth rate]
+    
+    these emphasizes that these notation are not inherently linked to best-case or worst-case Analysis
+Big O(n) - big o notation is the ceiling it is the worst casE algorithm of analyzing a time complexity. the best case 
+is only when you compare it one.
+Big Omega(n) - big Omega is the best case algorithm, it is the lower bound algorithm which means no matter what, it takes only a small
+period of time complexity you can have, those are the binary search
+Theta notation - is the exact growth, no better no worse just a simple algorithm that is balance in both of time complexity
+and space complexty, it is the example of merge sort.
+
+
+Comparison of Function:
+    int This tpic is just analyzing which is deteremine the greater or less than the both algoritm in using logarithm approuch
+using different type of problem. This applying with log method
+
+Analazing Searching Algorithm:
+    Linear Search:
+        Linear search is a searching algorithm which is the best case of Big 0(n) is the n we find is the first index of a list or array
+        and then the worst case scenario of linear algorithm was to search every n in the list which is the size of an array, and the average is 
+        is which is calculating every possible cases divided by the number of elements which is big O(n) linear.
+    Binary Search/Tree:
+        Binary Search best case is the root or the middle of the index in the list we searching for. there are two types of binary/ which is 
+        normal array and tree, tree is just starting from the root then compare the root and the target go on until the value is found, however in the array we
+        split the array and check the middle. in the worst case is binary search tree is finding the leaf and aswell as the normal array is until the last element of halfing
+        the array. The minimum of worst case time is in a balance tree and maximum can be the height.
+
+Divide and Conquer
+    so divide and conquer is a method that recursively or make the problem smaller in to multiple problem, that is just like a binary search, mergesort
+those are an algorith searching and sorting with using divide and conquer. In a real world situation example. Learning something like DSA and Ful Stack Dev,
+you dont study it straigh straight but divide it in to days. like in monday, focus on DSA and tomorrow is Full Stack Dev. same goes to an Algorithm binary search.
+Another example is you want to make your own house, but making it alone is would take so much time, so go and find a workers and give them their specific task.
+that is divide and conquer.
+
+Recurrence Relation Key Point to remember:
+T(n) = T(recursive call) + work done outside recursion
+T(n) = T(n-1) + 1  →  k = n      →  O(n)
+T(n) = T(n/2) + 1  →  k = log n  →  O(log n)
+Big O   = upper bound
+Omega   = lower bound
+Theta   = tight bound
+
+T(base case) = 1 always
+
+T(n-k)  + k → k = n      → O(n)
+T(n/2^k)+ k → k = log n  → O(log n)
+
+
+Most Common Notation problem
+Pattern 1: T(n) = T(n-1) + 1
+Pattern 2: T(n) = T(n-1) + n
+Pattern 3: T(n) = 2T(n/2) + 1
+Pattern 4: T(n) = 2T(n/2) + n
+Pattern 5: T(n) = T(n/2) + 1

@@ -1,0 +1,51 @@
+## What is an Algorithm?
+
+Think of it like this:
+
+> **An algorithm is just a set of steps to solve a problem.**
+
+That's it. Seriously.
+
+---
+
+### Real life example first 🍳
+
+Imagine you want to make instant noodles. You'd follow these steps:
+
+1. Boil water
+2. Put noodles in
+3. Wait 3 minutes
+4. Add the seasoning
+5. Eat
+
+**That's an algorithm.** A clear, step-by-step instruction to get from a problem (*I'm hungry*) to a solution (*noodles are ready*).
+
+---
+
+### Now in coding 💻
+
+When you write code, you're basically writing algorithms — telling the computer **exactly what steps to follow** to solve a problem.
+
+**Example:** How do you find the biggest number in a list?
+
+1. Look at the first number, assume it's the biggest
+2. Check the next number — is it bigger?
+3. If yes, that's the new biggest
+4. Keep going until the list ends
+5. Whatever you're holding at the end — that's the biggest number
+
+Simple, right? That's an algorithm.
+
+---
+
+### The 3 things every algorithm needs:
+
+| Thing | Meaning |
+|---|---|
+| **Input** | What you start with |
+| **Steps** | What you do with it |
+| **Output** | What you get at the end |
+
+---
+
+The more you code, the more you'll realize — **programming is basically just writing algorithms.** Every function, every program, every app is just a bunch of steps solving a bunch of problems.
