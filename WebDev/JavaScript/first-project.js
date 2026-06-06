@@ -8,9 +8,9 @@ console.log("1. Change First Name\n2. Change Middle Name\n3. Change Last Name")
 var Choice = prompt("> ")
 if (Choice == 1) {
     FirstName = prompt("Enter New First Name: ")
-} if (Choice == 2) {
+} else if (Choice == 2) {
     MiddleName = prompt("Enter New Middle Name: ")
-} if (Choice == 3) {
+} else if (Choice == 3) {
     LastName = prompt("Enter New Last Name: ")
 }
 console.log(FirstName, MiddleName, LastName)
