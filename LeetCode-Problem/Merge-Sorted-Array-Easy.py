@@ -16,7 +16,7 @@ def merge(num1, num2, m, n):
             num1[last_pointer] = num2[pointer2]
             pointer2 -= 1
         last_pointer -= 1
-    num1[:pointer2 + 1] = num2[:pointer2 + 1]
+    num1[:pointer2 + 1] = num2[:pointer2 + 1]                                  
 
 num1 = [1, 2, 3, 0, 0, 0]
 num2 = [2, 5, 6]
