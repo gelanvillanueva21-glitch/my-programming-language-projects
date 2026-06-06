@@ -164,12 +164,11 @@ class Easy:
     def goHallWay(self):
         self.location_history.append(self.location)
         self.location = self.hallway
+        print("You are in the Hallway")
         if "Hallway" in self.hasCleared:
-            print("You are in the hallway")
             print("\nYou Cleared this level already.\n")
             return
         enemy_list = self.enemy.enemySpawn("Easy")
-        print("You are in the Hallway")
         print("\nEnemy Spawned\n")
         for i in enemy_list:
             print(i[0])
@@ -203,9 +202,10 @@ class Easy:
                     print(f"\nYou killed {e[0]}!\n")
                     item_drop = self.chance("Easy")
                     temporary_item = item_drop()
-                    if temporary_item[1] is not None:
-                        print(temporary_item)
-                        self.inventory.addItem(temporary_item)
+                    if temporary_item:
+                        if temporary_item[1] is not None:
+                            print(temporary_item)
+                            self.inventory.addItem(temporary_item)
                 enemy_list = [e for e in enemy_list if e[1][0] > 0]
                 length = len(enemy_list)
                 if len(enemy_list) > 0:
@@ -226,6 +226,7 @@ class Easy:
                 print("\nIndex Out Of Bound\n")
             if len(enemy_list) == 0:
                 self.hasCleared.append("Hallway")
+                print("\nYou Cleared This Level\n")
             time.sleep(1)
 
 
@@ -233,30 +234,45 @@ class Easy:
         self.location_history.append(self.location)
         self.location = self.feild
         print("You are in the Feild")
+        if "Feild" in self.hasCleared:
+            print("\nYou Cleared this level already.\n")
+            return
 
 
     def goRegistrar(self):
         self.location_history.append(self.location)
         self.location = self.registrar
         print("You are in the Registrar")
+        if "Registrar" in self.hasCleared:
+            print("\nYou Cleared this level already.\n")
+            return
 
 
     def goClassroom(self):
         self.location_history.append(self.location)
         self.location = self.classroom
         print("You are in the Classroom")
+        if "Classroom" in self.hasCleared:
+            print("\nYou Cleared this level already.\n")
+            return
 
 
     def goAdmin(self):
         self.location_history.append(self.location)
         self.location = self.admin
         print("You are in the Admin")
+        if "Admin" in self.hasCleared:
+            print("\nYou Cleared this level already.\n")
+            return
 
 
     def goGymnasium(self):
         self.location_history.append(self.location)
         self.location = self.gymnasium
         print("You are in the Gymnasium")
+        if "Gymnasium" in self.hasCleared:
+            print("\nYou Cleared this level already.\n")
+            return
 
 
 class Enemy:
