@@ -11,7 +11,6 @@ class ScriptUniversity {
             if (gradeList[i] >= tmpVar)
                 tmpVar = gradeList[i]
         }
-        console.log(gradeList);
         return tmpVar
     }
     getStudentInfo() {
@@ -26,78 +25,73 @@ class ScriptUniversity {
         const temporaryList = [] 
         for (const element of this.studentInfo) {
             if (element[2] > 50) 
-                temporaryList.push(element)
+                temporaryList.push(element[2])
         }
-        console.log(temporaryList);
         return temporaryList
     }
     helperNameList() {
-        const gradeList = this.helperGradeList()
-        const resultGradeList = gradeList.map((number) => number < 70)
-        const tmpNameList = []
-        for (const i of resultGradeList) {
-            for (const y of this.studentInfo) {
-                if (y == i)
-                    tmpNameList.push(y)
-            }
-        }
-        console.log(gradeList);
-        return tmpNameList
+        return this.studentInfo
+            .filter((student) => student[2] >= 70)
+            .map((student) => student[0])
     }
     getLetterGrade(name) {
-        let grade = new Map()
-        grade.set(90, "A")
-        grade.set(80, "B")
-        grade.set(70, "C")
 
         for (const element of this.studentInfo) {
             if (name === element[0]) 
                 var gradeNumber = element[2]
         }
 
-        for (const [key, val] of grade) {
-            if (gradeNumber >= key)
-                return val
-            else
-                return "F"
-        }
+        if (gradeNumber >= 90)
+            return "A"
+        else if (gradeNumber >= 80)
+            return "B"
+        else if (gradeNumber >= 70)
+            return "C"
+        else
+            return "F"
     }
 }
 
 console.log("Welcome to the Script University\nPlease enter how many students you want\nEnter Correct answer to the Specific question");
-var numberOfStudent = prompt("> ")
-var studentInfo = []
 
-while (numberOfStudent > 0) {
-    const tmpStudentInfo = []
-    let studetName = prompt("Enter Student Full Name: ")
-    tmpStudentInfo.push(studetName)
+try {
+    var numberOfStudent = Number(prompt("> "))
+    var studentInfo = []
 
-    let studentAge = prompt("Enter Student Age: ")
-    tmpStudentInfo.push(studentAge)
+    while (numberOfStudent > 0) {
+        const tmpStudentInfo = []
+        let studetName = prompt("Enter Student Full Name: ")
+        tmpStudentInfo.push(studetName)
 
-    let studentGrade = number(prompt("Enter Student Grade: "))
-    tmpStudentInfo.push(studentGrade)
+        let studentAge = Number(prompt("Enter Student Age: "))
+        tmpStudentInfo.push(studentAge)
 
-    studentInfo.push(tmpStudentInfo)
-    numberOfStudent -= 1
-}
-while (true) {
-    const schoolUni = new ScriptUniversity(studentInfo)
-    console.log(`\nThere are aproximatly ${studentInfo.length} student you entered\n`);
-    console.log("-----MENU's-----\n1. Get highest grade from the student list\n2. Get Student Info\n3. Get Letter Grade\n4. Exit Program");
-    const choice = prompt("> ")
+        let studentGrade = Number(prompt("Enter Student Grade: "))
+        tmpStudentInfo.push(studentGrade)
 
-    if (choice == 1) {
-        console.log(schoolUni.getHighest());
-    } else if (choice == 2) {
-        schoolUni.getStudentInfo();
-    } else if (choice == 3) {
-        const name = prompt("Enter Name: ")
-        console.log(`Grade:  ${schoolUni.getLetterGrade(name)}`);
-    } else if (choice == 4) {
-        console.log("-----Students Passed-----");
-        console.log(schoolUni.helperNameList());
-        break
+        studentInfo.push(tmpStudentInfo)
+        numberOfStudent -= 1
     }
+    while (true) {
+        const schoolUni = new ScriptUniversity(studentInfo)
+        console.log(`\nThere are aproximatly ${studentInfo.length} student you entered\n`);
+        console.log("-----MENU's-----\n1. Get highest grade from the student list\n2. Get Student Info\n3. Get Letter Grade\n4. Exit Program");
+        const choice = Number(prompt("> "))
+
+        if (choice == 1) {
+            console.log(schoolUni.getHighest());
+        } else if (choice == 2) {
+            schoolUni.getStudentInfo();
+        } else if (choice == 3) {
+            const name = prompt("Enter Name: ")
+            console.log(`Grade:  ${schoolUni.getLetterGrade(name)}`);
+        } else if (choice == 4) {
+            console.log("-----Students Passed-----");
+            console.log(schoolUni.helperNameList());
+            break
+        }
+    }
+} catch (error) {
+    console.log(error.message);
 }
+
