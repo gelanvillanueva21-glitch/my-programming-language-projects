@@ -1,0 +1,2 @@
+#Semicolons are optional in Python. You can write multiple statements on one line by separating them with ; but this is rarely used because it makes it hard to read
+print('Hello')	;	print('Gelan')	;	print('No')

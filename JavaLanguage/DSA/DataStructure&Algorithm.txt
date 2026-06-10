@@ -1,0 +1,1291 @@
+================================================================
+       FULL DATA STRUCTURES & ALGORITHMS COURSE IN JAVA
+               Your Complete Beginner-to-Pro Guide
+================================================================
+
+TABLE OF CONTENTS
+-----------------
+1.  What is DSA and Why Should You Care?
+2.  Big O Notation — How We Measure Speed
+3.  Arrays
+4.  Linked Lists
+5.  Stacks
+6.  Queues
+7.  HashMaps & HashSets
+8.  Trees (Binary Trees & BST)
+9.  Heaps
+10. Graphs
+11. Recursion
+12. Sorting Algorithms
+13. Searching Algorithms
+14. Dynamic Programming (Intro)
+15. Final Tips & What to Study Next
+
+
+================================================================
+CHAPTER 1: WHAT IS DSA AND WHY SHOULD YOU CARE?
+================================================================
+
+DSA stands for Data Structures and Algorithms.
+
+Think of it this way:
+
+  DATA STRUCTURE = How you STORE data
+  ALGORITHM      = How you PROCESS or USE that data
+
+Real life example:
+  Imagine your bedroom. If your clothes are scattered everywhere
+  (bad data structure), finding a shirt takes forever (slow
+  algorithm). But if clothes are neatly sorted in drawers by
+  type (good data structure), finding anything is instant
+  (fast algorithm).
+
+Why does it matter in programming?
+  - It makes your programs FASTER
+  - It makes your programs use LESS memory
+  - Every major tech company (Google, Meta, Amazon) tests
+    DSA knowledge in job interviews
+
+Java is one of the best languages to learn DSA because:
+  - It is strongly typed (catches mistakes early)
+  - It has built-in data structure classes (ArrayList, HashMap, etc.)
+  - It is widely used in backend development
+
+
+================================================================
+CHAPTER 2: BIG O NOTATION — HOW WE MEASURE SPEED
+================================================================
+
+Before we dive into data structures, you need to understand
+how programmers measure how "fast" or "slow" code is.
+
+We use BIG O NOTATION. It describes how the time or space
+your code needs GROWS as the input grows.
+
+Common Big O values (from fastest to slowest):
+
+  O(1)        — Constant time. Always the same speed.
+  O(log n)    — Logarithmic. Grows very slowly.
+  O(n)        — Linear. Grows with the input.
+  O(n log n)  — Slightly worse than linear.
+  O(n²)       — Quadratic. Gets slow fast.
+  O(2^n)      — Exponential. Terrible for large input.
+
+------------------------------------------------------------
+EXAMPLE: O(1) — Constant Time
+------------------------------------------------------------
+
+  int[] numbers = {10, 20, 30, 40, 50};
+  System.out.println(numbers[0]); // Always instant. O(1)
+
+No matter how big the array is, grabbing index 0 is always
+the same speed.
+
+------------------------------------------------------------
+EXAMPLE: O(n) — Linear Time
+------------------------------------------------------------
+
+  int[] numbers = {1, 2, 3, 4, 5};
+  for (int n : numbers) {
+      System.out.println(n); // Loops through every item
+  }
+
+If the array has 5 items, it loops 5 times.
+If it has 1000 items, it loops 1000 times.
+Time grows WITH the input. That is O(n).
+
+------------------------------------------------------------
+EXAMPLE: O(n²) — Quadratic Time
+------------------------------------------------------------
+
+  int[] nums = {1, 2, 3, 4, 5};
+  for (int i = 0; i < nums.length; i++) {
+      for (int j = 0; j < nums.length; j++) {
+          System.out.println(nums[i] + ", " + nums[j]);
+      }
+  }
+
+Two nested loops. For every item, you loop again.
+5 items = 25 operations. 100 items = 10,000 operations.
+This gets slow VERY fast.
+
+REMEMBER THIS RULE:
+  When you see one loop = probably O(n)
+  When you see nested loops = probably O(n²)
+  When you cut the problem in half each time = O(log n)
+
+
+================================================================
+CHAPTER 3: ARRAYS
+================================================================
+
+An array is the most basic data structure. It stores items
+in a fixed-size, ordered list.
+
+Think of it like a row of lockers. Each locker has a number
+(index) starting from 0.
+
+------------------------------------------------------------
+Creating Arrays in Java
+------------------------------------------------------------
+
+  // Method 1: Declare with size
+  int[] scores = new int[5];
+
+  // Method 2: Declare with values
+  int[] scores = {90, 85, 78, 92, 88};
+
+  // Access by index (starts at 0)
+  System.out.println(scores[0]); // 90
+  System.out.println(scores[4]); // 88
+
+------------------------------------------------------------
+Common Array Operations
+------------------------------------------------------------
+
+  int[] nums = {5, 3, 8, 1, 9, 2};
+
+  // Get length
+  System.out.println(nums.length); // 6
+
+  // Loop through array
+  for (int i = 0; i < nums.length; i++) {
+      System.out.println(nums[i]);
+  }
+
+  // Enhanced for loop (cleaner)
+  for (int n : nums) {
+      System.out.println(n);
+  }
+
+------------------------------------------------------------
+Finding the Maximum Value
+------------------------------------------------------------
+
+  int[] nums = {5, 3, 8, 1, 9, 2};
+  int max = nums[0]; // Assume first is max
+
+  for (int i = 1; i < nums.length; i++) {
+      if (nums[i] > max) {
+          max = nums[i]; // Update max if we find bigger
+      }
+  }
+  System.out.println("Max: " + max); // Max: 9
+
+------------------------------------------------------------
+2D Arrays (Array of Arrays)
+------------------------------------------------------------
+
+  // Think of it like a grid or table
+  int[][] grid = {
+      {1, 2, 3},
+      {4, 5, 6},
+      {7, 8, 9}
+  };
+
+  System.out.println(grid[0][0]); // 1 (row 0, col 0)
+  System.out.println(grid[1][2]); // 6 (row 1, col 2)
+
+  // Loop through 2D array
+  for (int row = 0; row < grid.length; row++) {
+      for (int col = 0; col < grid[row].length; col++) {
+          System.out.print(grid[row][col] + " ");
+      }
+      System.out.println();
+  }
+
+------------------------------------------------------------
+ArrayList (Dynamic Array)
+------------------------------------------------------------
+
+Regular arrays have a FIXED size. What if you need to
+add or remove items? Use ArrayList!
+
+  import java.util.ArrayList;
+
+  ArrayList<String> names = new ArrayList<>();
+
+  names.add("Gelan");      // Add item
+  names.add("Kratos");
+  names.add("Arthur");
+
+  System.out.println(names.get(0));    // Gelan
+  System.out.println(names.size());    // 3
+
+  names.remove("Kratos");              // Remove by value
+  names.remove(0);                     // Remove by index
+
+  // Loop through ArrayList
+  for (String name : names) {
+      System.out.println(name);
+  }
+
+------------------------------------------------------------
+Array Big O Summary
+------------------------------------------------------------
+
+  Access by index   : O(1)  — Super fast
+  Search for value  : O(n)  — Have to check each item
+  Insert at end     : O(1)  — Easy
+  Insert at middle  : O(n)  — Have to shift items
+  Delete            : O(n)  — Have to shift items
+
+
+================================================================
+CHAPTER 4: LINKED LISTS
+================================================================
+
+A Linked List is a chain of NODES. Each node holds:
+  1. A value (data)
+  2. A pointer to the next node
+
+Unlike arrays, linked lists do NOT store items next to each
+other in memory. They are connected through pointers.
+
+Think of it like a scavenger hunt. Each clue (node) tells
+you where the next clue is.
+
+  [10 | next] --> [20 | next] --> [30 | null]
+
+The last node points to null (end of list).
+
+------------------------------------------------------------
+Building a Linked List from Scratch
+------------------------------------------------------------
+
+  // Step 1: Create the Node class
+  class Node {
+      int data;
+      Node next;
+
+      Node(int data) {
+          this.data = data;
+          this.next = null;
+      }
+  }
+
+  // Step 2: Create the LinkedList class
+  class LinkedList {
+      Node head; // First node
+
+      // Add to the end
+      void add(int data) {
+          Node newNode = new Node(data);
+          if (head == null) {
+              head = newNode;
+              return;
+          }
+          Node current = head;
+          while (current.next != null) {
+              current = current.next;
+          }
+          current.next = newNode;
+      }
+
+      // Print all nodes
+      void print() {
+          Node current = head;
+          while (current != null) {
+              System.out.print(current.data + " -> ");
+              current = current.next;
+          }
+          System.out.println("null");
+      }
+  }
+
+  // Step 3: Use it
+  public class Main {
+      public static void main(String[] args) {
+          LinkedList list = new LinkedList();
+          list.add(10);
+          list.add(20);
+          list.add(30);
+          list.print(); // 10 -> 20 -> 30 -> null
+      }
+  }
+
+------------------------------------------------------------
+Java Built-in LinkedList
+------------------------------------------------------------
+
+  import java.util.LinkedList;
+
+  LinkedList<Integer> list = new LinkedList<>();
+  list.add(10);
+  list.add(20);
+  list.add(30);
+
+  list.addFirst(5);   // Add to front
+  list.addLast(40);   // Add to end
+  list.removeFirst(); // Remove from front
+  list.removeLast();  // Remove from end
+
+  System.out.println(list); // [10, 20, 30]
+
+------------------------------------------------------------
+Array vs Linked List
+------------------------------------------------------------
+
+  Operation       | Array  | Linked List
+  ----------------|--------|------------
+  Access by index | O(1)   | O(n)
+  Insert at front | O(n)   | O(1)
+  Insert at end   | O(1)   | O(n)
+  Delete          | O(n)   | O(1) if at head
+  Memory          | Fixed  | Dynamic
+
+
+================================================================
+CHAPTER 5: STACKS
+================================================================
+
+A Stack follows the LIFO rule:
+  LAST IN, FIRST OUT
+
+Think of a stack of plates. You put plates on top and
+you take plates from the top. You cannot grab from the bottom.
+
+Real world uses:
+  - Browser back button (history of pages)
+  - Undo feature in any editor
+  - Function call tracking in programming
+
+------------------------------------------------------------
+Stack Operations
+------------------------------------------------------------
+
+  push(item)  — Add item to the top
+  pop()       — Remove item from the top
+  peek()      — Look at the top item without removing
+  isEmpty()   — Check if stack is empty
+
+------------------------------------------------------------
+Using Java's Built-in Stack
+------------------------------------------------------------
+
+  import java.util.Stack;
+
+  Stack<Integer> stack = new Stack<>();
+
+  stack.push(10); // Add 10
+  stack.push(20); // Add 20
+  stack.push(30); // Add 30
+
+  System.out.println(stack.peek()); // 30 (just look)
+  System.out.println(stack.pop());  // 30 (remove and return)
+  System.out.println(stack.pop());  // 20
+  System.out.println(stack.pop());  // 10
+
+  System.out.println(stack.isEmpty()); // true
+
+------------------------------------------------------------
+Building a Stack from Scratch
+------------------------------------------------------------
+
+  class Stack {
+      int[] data;
+      int top;
+
+      Stack(int size) {
+          data = new int[size];
+          top = -1; // Empty stack
+      }
+
+      void push(int value) {
+          if (top == data.length - 1) {
+              System.out.println("Stack is full!");
+              return;
+          }
+          data[++top] = value;
+      }
+
+      int pop() {
+          if (top == -1) {
+              System.out.println("Stack is empty!");
+              return -1;
+          }
+          return data[top--];
+      }
+
+      int peek() {
+          return data[top];
+      }
+
+      boolean isEmpty() {
+          return top == -1;
+      }
+  }
+
+------------------------------------------------------------
+Stack Big O
+------------------------------------------------------------
+
+  push  : O(1)
+  pop   : O(1)
+  peek  : O(1)
+
+Stacks are extremely fast for everything!
+
+
+================================================================
+CHAPTER 6: QUEUES
+================================================================
+
+A Queue follows the FIFO rule:
+  FIRST IN, FIRST OUT
+
+Think of a line at a fast food restaurant. The first person
+in line gets served first. New people join at the back.
+
+Real world uses:
+  - Print jobs (first document sent = first to print)
+  - Customer service lines
+  - CPU task scheduling
+
+------------------------------------------------------------
+Queue Operations
+------------------------------------------------------------
+
+  enqueue(item) — Add item to the back
+  dequeue()     — Remove item from the front
+  peek()        — Look at the front item
+  isEmpty()     — Check if queue is empty
+
+------------------------------------------------------------
+Using Java's Built-in Queue
+------------------------------------------------------------
+
+  import java.util.LinkedList;
+  import java.util.Queue;
+
+  Queue<String> queue = new LinkedList<>();
+
+  queue.add("Alice");    // enqueue
+  queue.add("Bob");
+  queue.add("Charlie");
+
+  System.out.println(queue.peek());   // Alice (just look)
+  System.out.println(queue.poll());   // Alice (remove)
+  System.out.println(queue.poll());   // Bob
+  System.out.println(queue);          // [Charlie]
+
+------------------------------------------------------------
+Queue Big O
+------------------------------------------------------------
+
+  enqueue : O(1)
+  dequeue : O(1)
+  peek    : O(1)
+
+Queues are also very fast!
+
+------------------------------------------------------------
+Stack vs Queue — Quick Comparison
+------------------------------------------------------------
+
+  Stack  = LIFO (last in, first out) — like a pile of plates
+  Queue  = FIFO (first in, first out) — like a waiting line
+
+
+================================================================
+CHAPTER 7: HASHMAPS & HASHSETS
+================================================================
+
+A HashMap stores KEY-VALUE pairs. Like a dictionary:
+  Word (key) --> Definition (value)
+
+Instead of finding data by position (like arrays), you
+find data by a unique KEY.
+
+  "name"  --> "Gelan"
+  "age"   --> 17
+  "city"  --> "Bacolod"
+
+------------------------------------------------------------
+HashMap in Java
+------------------------------------------------------------
+
+  import java.util.HashMap;
+
+  HashMap<String, Integer> scores = new HashMap<>();
+
+  // Add key-value pairs
+  scores.put("Gelan", 95);
+  scores.put("Kratos", 80);
+  scores.put("Arthur", 88);
+
+  // Get by key
+  System.out.println(scores.get("Gelan")); // 95
+
+  // Check if key exists
+  System.out.println(scores.containsKey("Kratos")); // true
+
+  // Remove a key
+  scores.remove("Arthur");
+
+  // Loop through all entries
+  for (String key : scores.keySet()) {
+      System.out.println(key + " : " + scores.get(key));
+  }
+
+------------------------------------------------------------
+Word Counter Example (Classic HashMap problem)
+------------------------------------------------------------
+
+  String sentence = "the cat sat on the mat the cat";
+  String[] words = sentence.split(" ");
+
+  HashMap<String, Integer> wordCount = new HashMap<>();
+
+  for (String word : words) {
+      if (wordCount.containsKey(word)) {
+          wordCount.put(word, wordCount.get(word) + 1);
+      } else {
+          wordCount.put(word, 1);
+      }
+  }
+
+  System.out.println(wordCount);
+  // {the=3, cat=2, sat=1, on=1, mat=1}
+
+------------------------------------------------------------
+HashSet in Java
+------------------------------------------------------------
+
+A HashSet is like a HashMap but only stores KEYS, no values.
+It is used when you want UNIQUE items only (no duplicates).
+
+  import java.util.HashSet;
+
+  HashSet<String> visited = new HashSet<>();
+
+  visited.add("Google");
+  visited.add("YouTube");
+  visited.add("Google"); // Duplicate! Won't be added
+
+  System.out.println(visited.size());        // 2
+  System.out.println(visited.contains("YouTube")); // true
+
+------------------------------------------------------------
+HashMap Big O
+------------------------------------------------------------
+
+  put (add)     : O(1) average
+  get (lookup)  : O(1) average
+  remove        : O(1) average
+
+HashMaps are BLAZING fast for lookups!
+
+
+================================================================
+CHAPTER 8: TREES
+================================================================
+
+A Tree is a hierarchical data structure. It looks like an
+upside-down tree:
+
+              [10]          <-- Root (top node)
+             /    \
+           [5]    [15]      <-- Children
+          /   \   /   \
+        [3]  [7][12]  [20]  <-- Leaf nodes (no children)
+
+Key terms:
+  Root     — The top node (no parent)
+  Parent   — A node that has children
+  Child    — A node under a parent
+  Leaf     — A node with no children
+  Height   — Number of levels in the tree
+
+------------------------------------------------------------
+Binary Search Tree (BST)
+------------------------------------------------------------
+
+A Binary Search Tree has a special rule:
+  - Left child is ALWAYS smaller than the parent
+  - Right child is ALWAYS larger than the parent
+
+This makes searching VERY fast!
+
+------------------------------------------------------------
+Building a BST from Scratch
+------------------------------------------------------------
+
+  class TreeNode {
+      int value;
+      TreeNode left;
+      TreeNode right;
+
+      TreeNode(int value) {
+          this.value = value;
+          this.left = null;
+          this.right = null;
+      }
+  }
+
+  class BST {
+      TreeNode root;
+
+      // Insert a value
+      void insert(int value) {
+          root = insertNode(root, value);
+      }
+
+      TreeNode insertNode(TreeNode node, int value) {
+          if (node == null) {
+              return new TreeNode(value);
+          }
+          if (value < node.value) {
+              node.left = insertNode(node.left, value);
+          } else if (value > node.value) {
+              node.right = insertNode(node.right, value);
+          }
+          return node;
+      }
+
+      // Search for a value
+      boolean search(int value) {
+          return searchNode(root, value);
+      }
+
+      boolean searchNode(TreeNode node, int value) {
+          if (node == null) return false;
+          if (node.value == value) return true;
+          if (value < node.value) return searchNode(node.left, value);
+          return searchNode(node.right, value);
+      }
+
+      // In-order traversal (prints sorted!)
+      void inOrder(TreeNode node) {
+          if (node == null) return;
+          inOrder(node.left);
+          System.out.print(node.value + " ");
+          inOrder(node.right);
+      }
+  }
+
+  public class Main {
+      public static void main(String[] args) {
+          BST tree = new BST();
+          tree.insert(10);
+          tree.insert(5);
+          tree.insert(15);
+          tree.insert(3);
+          tree.insert(7);
+
+          tree.inOrder(tree.root); // 3 5 7 10 15
+
+          System.out.println(tree.search(7));  // true
+          System.out.println(tree.search(99)); // false
+      }
+  }
+
+------------------------------------------------------------
+Tree Traversals
+------------------------------------------------------------
+
+There are 3 ways to visit all nodes in a tree:
+
+  In-Order   : Left → Root → Right  (gives sorted output in BST)
+  Pre-Order  : Root → Left → Right  (good for copying tree)
+  Post-Order : Left → Right → Root  (good for deleting tree)
+
+------------------------------------------------------------
+BST Big O
+------------------------------------------------------------
+
+  Search  : O(log n) average, O(n) worst case
+  Insert  : O(log n) average
+  Delete  : O(log n) average
+
+
+================================================================
+CHAPTER 9: HEAPS
+================================================================
+
+A Heap is a special type of binary tree with one rule:
+
+  MAX HEAP: Parent is always GREATER than its children
+  MIN HEAP: Parent is always SMALLER than its children
+
+The root is always the MAX (or MIN) value.
+This makes Heaps perfect for Priority Queues.
+
+------------------------------------------------------------
+Priority Queue in Java (uses a Min Heap by default)
+------------------------------------------------------------
+
+  import java.util.PriorityQueue;
+
+  PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+  pq.add(30);
+  pq.add(10);
+  pq.add(20);
+
+  System.out.println(pq.poll()); // 10 (smallest first)
+  System.out.println(pq.poll()); // 20
+  System.out.println(pq.poll()); // 30
+
+------------------------------------------------------------
+Max Heap in Java
+------------------------------------------------------------
+
+  import java.util.Collections;
+  import java.util.PriorityQueue;
+
+  PriorityQueue<Integer> maxHeap =
+      new PriorityQueue<>(Collections.reverseOrder());
+
+  maxHeap.add(30);
+  maxHeap.add(10);
+  maxHeap.add(20);
+
+  System.out.println(maxHeap.poll()); // 30 (largest first)
+  System.out.println(maxHeap.poll()); // 20
+  System.out.println(maxHeap.poll()); // 10
+
+------------------------------------------------------------
+Heap Big O
+------------------------------------------------------------
+
+  Insert  : O(log n)
+  Remove  : O(log n)
+  Peek    : O(1)
+
+
+================================================================
+CHAPTER 10: GRAPHS
+================================================================
+
+A Graph is a set of NODES (vertices) connected by EDGES.
+
+Unlike trees, graphs can have cycles (loops) and nodes
+can be connected to any number of other nodes.
+
+Real world uses:
+  - Social networks (people are nodes, friendships are edges)
+  - Google Maps (cities are nodes, roads are edges)
+  - Internet (websites and links)
+
+Types of graphs:
+  Directed   — Edges have direction (one way)
+  Undirected — Edges go both ways
+  Weighted   — Edges have a cost/distance
+
+------------------------------------------------------------
+Representing a Graph with Adjacency List
+------------------------------------------------------------
+
+  import java.util.ArrayList;
+  import java.util.HashMap;
+
+  HashMap<String, ArrayList<String>> graph = new HashMap<>();
+
+  // Build the graph
+  graph.put("A", new ArrayList<>());
+  graph.put("B", new ArrayList<>());
+  graph.put("C", new ArrayList<>());
+
+  graph.get("A").add("B");
+  graph.get("A").add("C");
+  graph.get("B").add("C");
+
+  // A connects to B and C
+  // B connects to C
+
+  System.out.println(graph.get("A")); // [B, C]
+
+------------------------------------------------------------
+BFS — Breadth First Search
+------------------------------------------------------------
+
+BFS explores a graph LEVEL by LEVEL (uses a Queue).
+
+Start at node A, visit all neighbors, then their neighbors.
+
+  import java.util.*;
+
+  void bfs(HashMap<String, ArrayList<String>> graph,
+           String start) {
+      Queue<String> queue = new LinkedList<>();
+      HashSet<String> visited = new HashSet<>();
+
+      queue.add(start);
+      visited.add(start);
+
+      while (!queue.isEmpty()) {
+          String node = queue.poll();
+          System.out.print(node + " ");
+
+          for (String neighbor : graph.get(node)) {
+              if (!visited.contains(neighbor)) {
+                  visited.add(neighbor);
+                  queue.add(neighbor);
+              }
+          }
+      }
+  }
+
+------------------------------------------------------------
+DFS — Depth First Search
+------------------------------------------------------------
+
+DFS explores as DEEP as possible before backtracking (uses a Stack
+or recursion).
+
+  void dfs(HashMap<String, ArrayList<String>> graph,
+           String node, HashSet<String> visited) {
+      if (visited.contains(node)) return;
+
+      visited.add(node);
+      System.out.print(node + " ");
+
+      for (String neighbor : graph.get(node)) {
+          dfs(graph, neighbor, visited);
+      }
+  }
+
+------------------------------------------------------------
+BFS vs DFS
+------------------------------------------------------------
+
+  BFS — Good for finding SHORTEST PATH
+  DFS — Good for exploring all possible paths
+
+
+================================================================
+CHAPTER 11: RECURSION
+================================================================
+
+Recursion is when a function CALLS ITSELF to solve a problem
+by breaking it into smaller pieces.
+
+Every recursive function needs:
+  1. BASE CASE   — When to STOP (very important!)
+  2. RECURSIVE CASE — The function calling itself
+
+------------------------------------------------------------
+Example: Countdown
+------------------------------------------------------------
+
+  void countdown(int n) {
+      if (n == 0) {              // Base case: STOP at 0
+          System.out.println("Done!");
+          return;
+      }
+      System.out.println(n);
+      countdown(n - 1);          // Recursive case
+  }
+
+  countdown(5);
+  // Output: 5, 4, 3, 2, 1, Done!
+
+------------------------------------------------------------
+Example: Factorial
+------------------------------------------------------------
+
+  Factorial of 5 = 5 × 4 × 3 × 2 × 1 = 120
+
+  int factorial(int n) {
+      if (n == 1) return 1;      // Base case
+      return n * factorial(n - 1); // Recursive case
+  }
+
+  System.out.println(factorial(5)); // 120
+
+------------------------------------------------------------
+Example: Fibonacci
+------------------------------------------------------------
+
+  Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13...
+  Each number = sum of the two before it
+
+  int fibonacci(int n) {
+      if (n <= 1) return n;      // Base case
+      return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+
+  System.out.println(fibonacci(6)); // 8
+
+WARNING: This Fibonacci is O(2^n) — very slow for large n!
+We fix this in Chapter 14 with Dynamic Programming.
+
+------------------------------------------------------------
+Recursion Tips
+------------------------------------------------------------
+
+  - Always define your BASE CASE first or you get infinite loop
+  - Think of the small version of the problem first
+  - Trust the recursion — don't try to trace every step in your head
+  - Every recursive call uses memory (call stack)
+
+
+================================================================
+CHAPTER 12: SORTING ALGORITHMS
+================================================================
+
+Sorting is arranging data in order. It is one of the most
+important topics in DSA and a common interview question.
+
+------------------------------------------------------------
+1. Bubble Sort — O(n²)
+------------------------------------------------------------
+
+Compare adjacent items and swap if they are in wrong order.
+Repeat until sorted. Simple but slow.
+
+  void bubbleSort(int[] arr) {
+      int n = arr.length;
+      for (int i = 0; i < n - 1; i++) {
+          for (int j = 0; j < n - i - 1; j++) {
+              if (arr[j] > arr[j + 1]) {
+                  // Swap
+                  int temp = arr[j];
+                  arr[j] = arr[j + 1];
+                  arr[j + 1] = temp;
+              }
+          }
+      }
+  }
+
+------------------------------------------------------------
+2. Selection Sort — O(n²)
+------------------------------------------------------------
+
+Find the smallest item and put it at the front. Repeat.
+
+  void selectionSort(int[] arr) {
+      int n = arr.length;
+      for (int i = 0; i < n - 1; i++) {
+          int minIdx = i;
+          for (int j = i + 1; j < n; j++) {
+              if (arr[j] < arr[minIdx]) {
+                  minIdx = j;
+              }
+          }
+          int temp = arr[minIdx];
+          arr[minIdx] = arr[i];
+          arr[i] = temp;
+      }
+  }
+
+------------------------------------------------------------
+3. Insertion Sort — O(n²) worst, O(n) best
+------------------------------------------------------------
+
+Build a sorted portion one item at a time (like sorting
+playing cards in your hand).
+
+  void insertionSort(int[] arr) {
+      int n = arr.length;
+      for (int i = 1; i < n; i++) {
+          int key = arr[i];
+          int j = i - 1;
+          while (j >= 0 && arr[j] > key) {
+              arr[j + 1] = arr[j];
+              j--;
+          }
+          arr[j + 1] = key;
+      }
+  }
+
+------------------------------------------------------------
+4. Merge Sort — O(n log n)
+------------------------------------------------------------
+
+Divide the array in half, sort each half, then merge them.
+Uses recursion. Much faster than the above three.
+
+  void mergeSort(int[] arr, int left, int right) {
+      if (left >= right) return;
+      int mid = (left + right) / 2;
+      mergeSort(arr, left, mid);
+      mergeSort(arr, mid + 1, right);
+      merge(arr, left, mid, right);
+  }
+
+  void merge(int[] arr, int left, int mid, int right) {
+      int n1 = mid - left + 1;
+      int n2 = right - mid;
+
+      int[] L = new int[n1];
+      int[] R = new int[n2];
+
+      for (int i = 0; i < n1; i++) L[i] = arr[left + i];
+      for (int j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
+
+      int i = 0, j = 0, k = left;
+      while (i < n1 && j < n2) {
+          if (L[i] <= R[j]) arr[k++] = L[i++];
+          else arr[k++] = R[j++];
+      }
+      while (i < n1) arr[k++] = L[i++];
+      while (j < n2) arr[k++] = R[j++];
+  }
+
+------------------------------------------------------------
+5. Java Built-in Sort — O(n log n)
+------------------------------------------------------------
+
+In real life, just use Java's built-in sort!
+
+  import java.util.Arrays;
+
+  int[] arr = {5, 3, 8, 1, 9};
+  Arrays.sort(arr);
+  System.out.println(Arrays.toString(arr)); // [1, 3, 5, 8, 9]
+
+------------------------------------------------------------
+Sorting Algorithm Comparison
+------------------------------------------------------------
+
+  Algorithm       | Best    | Average | Worst   | Stable?
+  ----------------|---------|---------|---------|--------
+  Bubble Sort     | O(n)    | O(n²)   | O(n²)   | Yes
+  Selection Sort  | O(n²)   | O(n²)   | O(n²)   | No
+  Insertion Sort  | O(n)    | O(n²)   | O(n²)   | Yes
+  Merge Sort      | O(nlogn)| O(nlogn)| O(nlogn)| Yes
+  Quick Sort      | O(nlogn)| O(nlogn)| O(n²)   | No
+
+
+================================================================
+CHAPTER 13: SEARCHING ALGORITHMS
+================================================================
+
+------------------------------------------------------------
+1. Linear Search — O(n)
+------------------------------------------------------------
+
+Check every single item one by one until you find it.
+Simple but slow for large data.
+
+  int linearSearch(int[] arr, int target) {
+      for (int i = 0; i < arr.length; i++) {
+          if (arr[i] == target) return i; // Return index
+      }
+      return -1; // Not found
+  }
+
+  int[] nums = {5, 3, 8, 1, 9};
+  System.out.println(linearSearch(nums, 8)); // 2 (index)
+  System.out.println(linearSearch(nums, 7)); // -1
+
+------------------------------------------------------------
+2. Binary Search — O(log n)
+------------------------------------------------------------
+
+ONLY works on SORTED arrays. Cut the search in half each time.
+
+  How it works:
+  - Look at the MIDDLE item
+  - If it is the target, done!
+  - If target is smaller, search the LEFT half
+  - If target is larger, search the RIGHT half
+  - Repeat
+
+  int binarySearch(int[] arr, int target) {
+      int left = 0;
+      int right = arr.length - 1;
+
+      while (left <= right) {
+          int mid = (left + right) / 2;
+
+          if (arr[mid] == target) return mid;
+          else if (arr[mid] < target) left = mid + 1;
+          else right = mid - 1;
+      }
+      return -1; // Not found
+  }
+
+  int[] sorted = {1, 3, 5, 8, 9};
+  System.out.println(binarySearch(sorted, 8)); // 3
+  System.out.println(binarySearch(sorted, 7)); // -1
+
+------------------------------------------------------------
+Binary Search — Why it is so fast
+------------------------------------------------------------
+
+  Array of 1,000,000 items:
+  - Linear Search : up to 1,000,000 checks
+  - Binary Search : up to 20 checks (log₂ of 1,000,000 ≈ 20)
+
+  That is the power of O(log n)!
+
+
+================================================================
+CHAPTER 14: DYNAMIC PROGRAMMING (INTRO)
+================================================================
+
+Dynamic Programming (DP) is a technique to solve problems
+faster by REMEMBERING results of sub-problems instead of
+recalculating them.
+
+This technique is called MEMOIZATION.
+
+Remember the slow Fibonacci from Chapter 11?
+
+  fibonacci(5) calls fibonacci(4) and fibonacci(3)
+  fibonacci(4) calls fibonacci(3) and fibonacci(2)
+  fibonacci(3) gets called again and again!
+
+We can FIX this by storing results we already calculated.
+
+------------------------------------------------------------
+Fibonacci with Memoization — O(n)
+------------------------------------------------------------
+
+  import java.util.HashMap;
+
+  HashMap<Integer, Integer> memo = new HashMap<>();
+
+  int fibonacci(int n) {
+      if (n <= 1) return n;
+
+      // If already calculated, return stored result
+      if (memo.containsKey(n)) return memo.get(n);
+
+      // Otherwise calculate and STORE it
+      int result = fibonacci(n - 1) + fibonacci(n - 2);
+      memo.put(n, result);
+
+      return result;
+  }
+
+  System.out.println(fibonacci(50)); // Super fast now!
+
+------------------------------------------------------------
+Fibonacci with Tabulation (Bottom-Up DP)
+------------------------------------------------------------
+
+Another approach: build the answer from the bottom up
+using an array.
+
+  int fibTabulation(int n) {
+      if (n <= 1) return n;
+
+      int[] dp = new int[n + 1];
+      dp[0] = 0;
+      dp[1] = 1;
+
+      for (int i = 2; i <= n; i++) {
+          dp[i] = dp[i - 1] + dp[i - 2];
+      }
+      return dp[n];
+  }
+
+  System.out.println(fibTabulation(10)); // 55
+
+------------------------------------------------------------
+When to Use Dynamic Programming
+------------------------------------------------------------
+
+Ask yourself these two questions:
+  1. Can the problem be broken into SMALLER sub-problems?
+  2. Do those sub-problems REPEAT (overlap)?
+
+If YES to both → Dynamic Programming is likely the answer!
+
+Common DP problems:
+  - Fibonacci sequence
+  - Coin change problem
+  - Longest common subsequence
+  - Knapsack problem
+  - Climbing stairs
+
+
+================================================================
+CHAPTER 15: FINAL TIPS & WHAT TO STUDY NEXT
+================================================================
+
+------------------------------------------------------------
+Study Roadmap
+------------------------------------------------------------
+
+  BEGINNER (You are here, Gelan!)
+    [ ] Arrays and ArrayLists
+    [ ] Linked Lists
+    [ ] Stacks and Queues
+    [ ] HashMaps and HashSets
+    [ ] Recursion basics
+    [ ] Linear and Binary Search
+    [ ] Bubble, Selection, Insertion Sort
+
+  INTERMEDIATE
+    [ ] Trees and BST
+    [ ] Heaps and Priority Queues
+    [ ] Merge Sort and Quick Sort
+    [ ] Graphs (BFS and DFS)
+    [ ] Dynamic Programming basics
+
+  ADVANCED
+    [ ] Tries
+    [ ] Segment Trees
+    [ ] Dijkstra's Algorithm (shortest path)
+    [ ] Bellman-Ford Algorithm
+    [ ] Advanced DP problems
+    [ ] Bit manipulation
+
+------------------------------------------------------------
+How to Actually Get Good at DSA
+------------------------------------------------------------
+
+1. CODE EVERY EXAMPLE in this course yourself.
+   Do not just read. Type it out. Run it. Break it.
+
+2. PRACTICE on LeetCode (leetcode.com)
+   Start with Easy problems. Do at least 1 per day.
+
+3. UNDERSTAND, don't memorize.
+   If you understand WHY something works, you can
+   always figure out HOW to code it.
+
+4. REVIEW Big O for every solution you write.
+   Ask yourself: "Can I make this faster?"
+
+5. BE PATIENT.
+   DSA is hard. Everyone struggles at first.
+   Consistency beats talent every time.
+
+------------------------------------------------------------
+Recommended Practice Sites
+------------------------------------------------------------
+
+  LeetCode     : leetcode.com       (Best for interviews)
+  HackerRank   : hackerrank.com     (Good for beginners)
+  Codeforces   : codeforces.com     (Competitive programming)
+  NeetCode     : neetcode.io        (Great roadmap + YouTube)
+
+------------------------------------------------------------
+Important Java Classes to Know
+------------------------------------------------------------
+
+  java.util.ArrayList      — Dynamic array
+  java.util.LinkedList     — Doubly linked list
+  java.util.Stack          — Stack (LIFO)
+  java.util.Queue          — Queue interface (FIFO)
+  java.util.PriorityQueue  — Heap-based priority queue
+  java.util.HashMap        — Key-value pairs
+  java.util.HashSet        — Unique values only
+  java.util.TreeMap        — Sorted key-value pairs
+  java.util.Arrays         — Array utilities (sort, fill, etc.)
+  java.util.Collections    — Collection utilities
+
+------------------------------------------------------------
+Final Message
+------------------------------------------------------------
+
+DSA is one of the most important skills you will develop as
+a programmer. It will not click overnight — and that is
+completely normal.
+
+Every time you get confused, that is your brain building new
+connections. Every bug you fix makes you better.
+
+You already know Python OOP and you are learning Java.
+You are building something real. Keep going, Gelan. 💪
+
+================================================================
+END OF COURSE — DSA IN JAVA
+Written for Gelan | Version 1.0
+================================================================

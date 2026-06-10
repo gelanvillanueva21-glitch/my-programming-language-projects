@@ -1,0 +1,83 @@
+
+@media (max-width: 78rem) {
+    /* 1250px / 16 = 78rem */
+    html {
+        /* 9px / 16px = 56.25% */
+        font-size: 56.25%;
+    }
+    .logo-icon {
+        left: -20px;
+    }
+    .contact-box {
+        left: -15px;
+    }
+    .multiple-buttons {
+        left: -15px;
+    }
+}
+
+@media (max-width: 57rem) {
+    /* 900px / 16 = 56.25 */
+    html {
+        /* 8px / 16 = 50% */
+        font-size: 50%;
+    }
+    .card {
+        padding: 12px;
+        margin: 8px;
+    }
+    .logo-icon {
+        left: -10px;
+    }
+    .contact-box {
+        left: -5px;
+    }
+    .multiple-buttons {
+        left: -5px;
+    }
+}
+
+@media (max-width: 44rem) {
+    /* 700px / 16 = 44rem */
+    html {
+        /* 6.5px / 16 = 43.75% */
+        font-size: 40%;
+    }
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 29rem) {
+    /* 450px / 16 =  */
+    html {
+        /* 5px / 16 = 31.25% */
+        font-size: 31.25%;
+    }
+    .typewriter {
+        font-size: 20px;
+    }
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+    .cta-card-container {
+        height: 200px;
+    }
+    .footer-info-section {
+        flex-direction: column;
+    }
+    .logo-icon {
+        left: 0;
+    }
+    .contact-box {
+        left: 0;
+        justify-self: center;
+        align-self: center;
+    }
+    .multiple-buttons{
+        left: 0;
+    }
+    .multiple-buttons a {
+        font-size: 10px;
+    }
+}

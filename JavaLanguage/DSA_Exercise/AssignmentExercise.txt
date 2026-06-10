@@ -1,0 +1,5 @@
+Assignment
+Creat a simple text connection with a name on it
+each person name has a friend
+then all person must connected to each person on every person connected to
+the freind or connection store it in the file.text

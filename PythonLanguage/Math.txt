@@ -1,0 +1,114 @@
+import math
+
+# ============================================================
+#              PYTHON math MODULE - ALL METHODS
+# ============================================================
+
+
+# ----------------------------
+# CONSTANTS
+# ----------------------------
+
+math.pi         # 3.14159... — ratio of a circle's circumference to its diameter
+math.e          # 2.71828... — Euler's number, base of natural logarithm
+math.tau        # 6.28318... — equals 2 * pi
+math.inf        # Positive infinity
+math.nan        # Not a Number (undefined result)
+
+
+# ----------------------------
+# ROUNDING & INTEGER
+# ----------------------------
+
+math.ceil(x)        # Rounds x UP to the nearest integer         | math.ceil(4.1)    → 5
+math.floor(x)       # Rounds x DOWN to the nearest integer        | math.floor(4.9)   → 4
+math.trunc(x)       # Removes the decimal part (towards zero)     | math.trunc(-4.9)  → -4
+math.isqrt(x)       # Integer square root (no decimal)            | math.isqrt(17)    → 4
+
+
+# ----------------------------
+# ARITHMETIC
+# ----------------------------
+
+math.fabs(x)            # Absolute value, always returns float        | math.fabs(-5)     → 5.0
+math.pow(x, y)          # x raised to the power y                     | math.pow(2, 3)    → 8.0
+math.sqrt(x)            # Square root of x                            | math.sqrt(25)     → 5.0
+math.cbrt(x)            # Cube root of x                              | math.cbrt(27)     → 3.0
+math.factorial(x)       # x! (x times all integers below it)          | math.factorial(5) → 120
+math.gcd(*args)         # Greatest common divisor of given numbers     | math.gcd(12, 8)   → 4
+math.lcm(*args)         # Least common multiple of given numbers       | math.lcm(4, 6)    → 12
+math.comb(n, k)         # Number of ways to choose k from n (no order) | math.comb(5, 2)  → 10
+math.perm(n, k)         # Number of ways to arrange k from n (order)  | math.perm(5, 2)   → 20
+math.prod(iterable)     # Multiplies all items in an iterable together | math.prod([1,2,3])→ 6
+math.fsum(iterable)     # Accurate floating-point sum of an iterable  | math.fsum([0.1, 0.2]) → 0.3
+math.sumprod(p, q)      # Sum of products of two iterables             | math.sumprod([1,2],[3,4]) → 11
+math.fmod(x, y)         # Remainder of x / y (float version of %)     | math.fmod(10, 3)  → 1.0
+math.remainder(x, y)    # IEEE remainder of x with respect to y       | math.remainder(10, 3) → 1.0
+math.modf(x)            # Returns (decimal part, integer part) as tuple| math.modf(4.7)   → (0.7, 4.0)
+math.frexp(x)           # Returns (mantissa, exponent) of x            | math.frexp(8)    → (0.5, 4)
+math.ldexp(x, i)        # x * (2 ** i), reverses frexp                 | math.ldexp(0.5, 4) → 8.0
+math.copysign(x, y)     # Returns x with the sign of y                 | math.copysign(3, -1) → -3.0
+math.hypot(*coords)     # Euclidean distance (hypotenuse)              | math.hypot(3, 4)  → 5.0
+math.dist(p, q)         # Euclidean distance between two points        | math.dist([0,0],[3,4]) → 5.0
+
+
+# ----------------------------
+# LOGARITHMS & EXPONENTIALS
+# ----------------------------
+
+math.exp(x)         # e raised to the power x                     | math.exp(1)       → 2.718...
+math.exp2(x)        # 2 raised to the power x                     | math.exp2(3)      → 8.0
+math.expm1(x)       # e^x minus 1 (accurate for small x)          | math.expm1(0)     → 0.0
+math.log(x, base)   # Logarithm of x to given base (default: e)   | math.log(100, 10) → 2.0
+math.log2(x)        # Logarithm base 2 of x                       | math.log2(8)      → 3.0
+math.log10(x)       # Logarithm base 10 of x                      | math.log10(1000)  → 3.0
+math.log1p(x)       # log(1 + x), accurate for very small x       | math.log1p(0)     → 0.0
+
+
+# ----------------------------
+# TRIGONOMETRY (in radians)
+# ----------------------------
+
+math.sin(x)         # Sine of x                                   | math.sin(math.pi/2)  → 1.0
+math.cos(x)         # Cosine of x                                 | math.cos(0)          → 1.0
+math.tan(x)         # Tangent of x                                | math.tan(math.pi/4)  → 1.0
+math.asin(x)        # Inverse sine (arcsin) of x                  | math.asin(1)         → 1.57...
+math.acos(x)        # Inverse cosine (arccos) of x                | math.acos(1)         → 0.0
+math.atan(x)        # Inverse tangent (arctan) of x               | math.atan(1)         → 0.785...
+math.atan2(y, x)    # Arctan of y/x, handles all quadrants        | math.atan2(1, 1)     → 0.785...
+math.degrees(x)     # Converts radians to degrees                 | math.degrees(math.pi)→ 180.0
+math.radians(x)     # Converts degrees to radians                 | math.radians(180)    → 3.14...
+
+
+# ----------------------------
+# HYPERBOLIC FUNCTIONS
+# ----------------------------
+
+math.sinh(x)        # Hyperbolic sine of x                        | math.sinh(0)  → 0.0
+math.cosh(x)        # Hyperbolic cosine of x                      | math.cosh(0)  → 1.0
+math.tanh(x)        # Hyperbolic tangent of x                     | math.tanh(0)  → 0.0
+math.asinh(x)       # Inverse hyperbolic sine                     | math.asinh(0) → 0.0
+math.acosh(x)       # Inverse hyperbolic cosine                   | math.acosh(1) → 0.0
+math.atanh(x)       # Inverse hyperbolic tangent                  | math.atanh(0) → 0.0
+
+
+# ----------------------------
+# SPECIAL FUNCTIONS
+# ----------------------------
+
+math.erf(x)         # Error function of x (used in statistics)    | math.erf(1)   → 0.842...
+math.erfc(x)        # Complementary error function (1 - erf(x))   | math.erfc(1)  → 0.157...
+math.gamma(x)       # Gamma function of x (generalized factorial)  | math.gamma(5) → 24.0
+math.lgamma(x)      # Natural log of the absolute gamma of x      | math.lgamma(5) → 3.178...
+
+
+# ----------------------------
+# FLOATING POINT UTILITIES
+# ----------------------------
+
+math.isfinite(x)        # True if x is not inf or nan             | math.isfinite(1.0)       → True
+math.isinf(x)           # True if x is positive or negative inf   | math.isinf(math.inf)     → True
+math.isnan(x)           # True if x is NaN                        | math.isnan(math.nan)     → True
+math.isclose(a, b)      # True if a and b are close in value      | math.isclose(1.0, 1.0000001) → True
+math.nextafter(x, y)    # Next float from x towards y             | math.nextafter(1.0, 2.0) → 1.0000...
+math.ulp(x)             # Smallest step from x to next float      | math.ulp(1.0) → 2.22e-16
