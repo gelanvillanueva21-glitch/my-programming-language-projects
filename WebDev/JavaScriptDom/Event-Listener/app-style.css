@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.container-box {
+    width: 600px;
+    height: 600px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.box, .box3, .box2 {
+    height: 300px;
+    padding: 20px;
+    background-color: transparent;
+    border: 5px black solid;
+    border-radius: 12px;
+}
+
+.box2 {
+    height: 500px;
+}
+
+.hidden-box {
+    display: none;
+    margin-top: 20px;
+}
+
+.hidden-box.active {
+    display: block;
+}
+
+.example, .example2 {
+    margin-bottom: 100px;
+}
+
+.button, .button2 {
+    padding: 10px;
+    background-color: transparent;
+    border: 3px black solid;
+    border-radius: 8px;
+}

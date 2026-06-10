@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aqua;
+    font-family: 'Inter', sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    width: 500px;
+    background-color: transparent;
+    margin: 100px auto;
+    text-align: center;
+    border: 5px black solid;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+#main-heading {
+    margin-bottom: 25px;
+    font-size: 3.5rem;
+}
+
+.list-items {
+    font-size: 2rem;
+    background-color: white;
+    margin: 10px;
+}
