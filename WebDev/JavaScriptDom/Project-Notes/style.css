@@ -192,7 +192,6 @@ li {
 }
 
 #title-button {
-    width: 90%;
     background-color: var(--primary-color);
     display: flex;
     align-items: center;
@@ -240,7 +239,7 @@ li {
     align-self: center;
 }
 
-#search-note, #add-note, #delete-note {
+#search-note, #add-note, .delete-note {
     background-color: white;
     border: none;
     cursor: pointer;
@@ -277,10 +276,73 @@ li {
     border-radius: 50%;
 }
 
-#delete-note:active {
+.delete-note:active {
     background-color: red;
     transform: scale(1.05);
     border-radius: 50%;
+}
+
+.delete-btn {
+    background-color: white;
+}
+
+/* DELETE WINDOW */
+
+
+
+#window-delete-confirm {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+
+#delete-confirm {
+    padding: 20px;
+    background-color: var(--primary-color);
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+
+    border: 2px black solid;
+    border-radius: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 5px var(--grey-color);
+
+    animation: window;
+    animation-duration: 0.4s;
+}
+
+#heading-word {
+    font-size: 2rem;
+}
+
+.box-btn {
+    display: flex;
+    gap: 30px;
+}
+
+.btn {
+    font-size: 1.5rem;
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: black 2px solid;
+    transition: 0.3s ease;
+}
+
+.btn:hover, .btn:active {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.btn:active {
+    transform: scale(1.05);
 }
 
 
@@ -344,12 +406,14 @@ li {
 .list {
     width: 90%;
     padding: 10px;
-    margin: 0px 10px;
+    margin: 5px 10px;
     font-size: 2rem;
     color: var(--secondary-color);
     border-radius: 10px;
 
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
 }
 
 .list:hover {
