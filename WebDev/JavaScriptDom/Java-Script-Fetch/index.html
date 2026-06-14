@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+        <style>
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #pokemon {
+            width: 250px;
+            padding: 10px;
+            border-radius: 10px;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        #fetchPokemon {
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: white;
+            border: 2px solid;
+            transition: 0.2s ease;
+        }
+
+        #fetchPokemon:hover {
+            border: 2px green solid;
+            color: green;
+        }
+
+        #fetchPokemon:active {
+            background-color: green;
+            color: white;
+        }
+
+        #pokemonImage {
+            display: none;
+        }
+
+        </style>
+    </head>
+    <body>
+        
+        <input type="text" id="pokemon" placeholder="Enter pokemon name">
+        <button onclick="fetchData()" id="fetchPokemon">Fetch Pokemon</button>
+
+        <img src="" id="pokemonImage">
+
+        <script src="fetch.js"></script>
+    </body>
+</html>
