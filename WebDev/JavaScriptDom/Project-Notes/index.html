@@ -83,6 +83,42 @@
                 </div>
                 <div id = "text-box">
                     <textarea id="note-content" placeholder="Start typing your note..."></textarea>
+                    <div id="calculator-container">
+                        <div id="calculator-history-box">
+                            <div id="calculator-history-content">
+                                <ul id="history-box">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="calculator-box">
+                            <div id="calculator-content">
+                                <input type="text" id="display-input" readonly>
+                                <div id="calculator-components">
+                                    <button class = "operator">+</button>
+                                    <button>7</button>
+                                    <button>8</button>
+                                    <button>9</button>
+                                    <button class = "operator">-</button>
+                                    <button>4</button>
+                                    <button>5</button>
+                                    <button>6</button>
+                                    <button class = "operator">x</button>
+                                    <button>1</button>
+                                    <button>2</button>
+                                    <button>3</button>
+                                    <button class = "operator">/</button>
+                                    <button>0</button>
+                                    <button>.</button>
+                                    <button id = "equals">=</button>
+                                    <button class = "operator">C</button>
+                                    <button>00</button>
+                                    <button>000</button>
+                                    <button onclick="deleteNumber()">⌫</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
