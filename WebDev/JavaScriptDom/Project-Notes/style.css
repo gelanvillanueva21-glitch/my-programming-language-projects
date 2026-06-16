@@ -420,7 +420,113 @@ li {
     background-color: var(--grey-color);
 }
 
+/* CALCULATOR COMPONENTS */
+
+
+#calculator-container {
+    display: none;
+    position: fixed;
+    justify-content: space-evenly;
+    top: 55%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 65%;
+}
+
+#calculator-box {
+    position: relative;
+    background-color: hsl(0 1% 15%);
+    border-radius: 20px;
+    width: 340px;
+}
+
+#calculator-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+#display-input {
+    width: 100%;
+    height: 50px;
+    background-color: hsl(0 1% 20%);
+    border: none;
+    font-size: 2rem;
+    padding: 5px;
+    justify-items: flex-end;
+    color: white;
+}
+
+#calculator-components {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#calculator-content button {
+    width: 65px;
+    height: 65px;
+    font-size: 2rem;
+    border-radius: 50%;
+    background-color: hsl(0 1% 30%);
+    color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+}
+
+
+#calculator-content button:hover {
+    background-color: hsl(0 1% 40%);
+}
+
+
+#calculator-content button:active {
+    background-color: hsl(0 1% 50%);
+}
+
+#calculator-content .operator {
+    background-color: orange;
+}
+
+#calculator-content .operator:hover {
+    background-color: hsl(39, 100%, 65%);
+}
+
+#calculator-content .operator:active {
+    background-color: hsl(39, 100%, 75%);
+}
 
 
 
+/* CALCULATOR HISTORY */
+
+#calculator-history-box {
+    /* display: none; */
+    position: relative;
+    border: 5px var(--grey-color) solid;
+    border-radius: 20px;
+    width: 340px;
+    height: 470px;
+}
+
+#calculator-history-content {
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.second-list {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 10px;
+    font-size: 2rem;
+    color: var(--secondary-color);
+    border: 2px var(--secondary-color) solid;
+    border-radius: 10px;
+    cursor: default;
+}
 
