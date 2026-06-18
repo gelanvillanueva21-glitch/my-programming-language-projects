@@ -64,7 +64,6 @@ li {
     transform: translate(-50%, -50%);
 
     box-shadow: 0px 0px 5px var(--grey-color);
-    z-index: 1;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -428,7 +427,7 @@ li {
 
 #calculator-container {
     display: none;
-    position: fixed;
+    position: absolute;
     justify-content: space-evenly;
     top: 55%;
     left: 60%;
@@ -515,10 +514,23 @@ li {
     border-radius: 20px;
     width: 340px;
     height: 470px;
-    overflow-y: scroll;
-    scrollbar-width: none;
+    overflow-y: auto;
 }
 
+#calculator-history-content {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+#calculator-history-content::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+}
+
+#calculator-history-content::-webkit-scrollbar-thumb {
+    background-color: var(--grey-color);
+    border-radius: 4px;
+}
 
 .second-list {
     width: 90%;

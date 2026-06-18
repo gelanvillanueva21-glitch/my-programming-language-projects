@@ -6,11 +6,20 @@
         <title>Notes</title>
 
         <!-- STYLESHEET -->
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="quirie.css">
+        <link rel="stylesheet" href="../Css/style.css">
+        <link rel="stylesheet" href="../Css/weather.css">
+        <link rel="stylesheet" href="../Css/quirie.css">
+        <style>
+            .icon {
+                width: 6rem;
+            }
+            .box p {
+                font-size: 2rem;
+            }
+        </style>
 
         <!-- ICON -->
-        <link rel="icon" href="Image/note-text.svg">
+        <link rel="icon" href="../Image/note-text.svg">
 
         <!-- FONT FAMILY -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,22 +61,22 @@
             <div id = "side-bar-box">
                 <div class="box-button">
                     <button id = "title-button">
-                    <img src = "Image/notebook.svg" alt = "Note-book" style = "width: 5rem;">
+                    <img src = "../Image/notebook.svg" alt = "Note-book" style = "width: 5rem;">
                     <h1><span class = "highlighted-text">Note</span>-Pad</h1>
                     </button>
                 </div>
                 <div id="button-box">
                     <button id = "search-note">
-                        <img src = "Image/search-circle.svg" style = "width: 40px;">
+                        <img src = "../Image/search-circle.svg" style = "width: 40px;">
                     </button>
                     <button id = "add-note">
-                        <img src = "Image/plus-circle.svg" style = "width: 40px;">
+                        <img src = "../Image/plus-circle.svg" style = "width: 40px;">
                     </button>
                     <button class="delete-note">
-                        <img src = "Image/trash-circle.svg" style = "width: 40px;">
+                        <img src = "../Image/trash-circle.svg" style = "width: 40px;">
                     </button>
                     <button id="save-note">
-                        <img src = "Image/save.svg" style = "width: 25px;">
+                        <img src = "../Image/save.svg" style = "width: 25px;">
                     </button>
                 </div>
                 <div id = "saved-note-box">
@@ -83,6 +92,46 @@
                 </div>
                 <div id = "text-box">
                     <textarea id="note-content" placeholder="Start typing your note..."></textarea>
+                    <div id="weather-container">
+                        <div id="weather-box">
+                            <header>
+                                <nav id="navigation-bar">
+                                    <img src="../Image/weather.svg" alt="" width="75px">
+                                    <input type="text" id="search-city" placeholder="Search e.g. Bacolod City">
+                                    <button id="search-btn">Search</button>
+                                </nav>
+                                <section id="hero-section">
+                                    <div id="city-title">
+                                        <img src="../Image/skyline.svg" alt="" style='width: 7rem;'>
+                                        <h1 id="heading-city">CITY</h1>
+                                    </div>
+                                    <div id="main-weather">
+                                        <ul>
+                                            <li><img id="weather-btn" class="icon" src="../Image/weather.svg" alt="""></li>
+                                            <li><img id="wind-btn" class="icon" src="../Image/wind.svg" alt=""></li>
+                                            <li><img id="temperature-btn" class="icon" src="../Image/temperature.svg" alt=""></li>
+                                            <li><img id="time-btn" class="icon" src="../Image/time.svg" alt=""></li>
+                                        </ul>
+                                    </div>
+                                    <div id="city-content-weather">
+                                        <div class="box" id="box1">
+                                            <h2 id="h2"></h2>
+                                            <p id="paragraph"></p>
+                                        </div>
+                                        <div class="box" id="box2"></div>
+                                        <div class="box" id="box3"></div>
+                                        <div class="box" id="box4"></div>
+                                    </div>
+                                </section>
+                            </header>
+                            <main>
+
+                            </main>
+                        </div>
+                    </div>
+
+
+
                     <div id="calculator-container">
                         <div id="calculator-history-box">
                             <div id="calculator-history-content">
@@ -127,6 +176,7 @@
 
 
         <!-- JAVA SCRIPT -->
-        <script src="app.js"></script>
+        <script src="../Js/app.js"></script>
+        <script src="../Js/weather.js"></script>
     </body>
 </html>

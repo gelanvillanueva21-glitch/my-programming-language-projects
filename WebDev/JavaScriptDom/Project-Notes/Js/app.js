@@ -1,8 +1,8 @@
 
 
 // VARIABLES
-
 const titleBtn = document.getElementById('title-button');
+const weatherBox = document.getElementById('weather-container');
 const calculatorBox = document.getElementById('calculator-container');
 const textArea = document.getElementById('note-content');
 const searchBtn = document.getElementById('search-note');
@@ -93,18 +93,34 @@ searchTitleBtn.addEventListener('click', function(){
     } else {
         const allNotes = document.querySelectorAll('.list');
         allNotes.forEach(function(note){
-            if (searchInput.value.toLowerCase() === note.innerText.toLowerCase() && note.id.toLowerCase() === 'calculator') {
-                headingTitle.innerText = note.innerText.toUpperCase();
+            if (['calculator', 'calculator app'].includes(searchInput.value.toLowerCase())) {
+                headingTitle.innerText = searchInput.value.toUpperCase();
                 textArea.style.display = 'none';
                 calculatorBox.style.display =  'flex';
+                note.style.borderColor = 'blue';
+                note.style.borderStyle = 'solid';
+                weatherBox.style.display = 'none';
 
                 searchInput.value = '';
                 windowSearch.style.display = 'none';
+                highlightedNote = note;
+            } else if (['weather app', 'weather'].includes(searchInput.value.toLowerCase())) {
+                headingTitle.innerText = searchInput.value.toUpperCase();
+                textArea.style.display = 'none';
+                calculatorBox.style.display = 'none';
+                weatherBox.style.display = 'block';
+
+                note.style.borderColor = 'blue';
+                note.style.borderStyle = 'solid';
+                searchInput.value = '';
+                windowSearch.style.display = 'none';
+                highlightedNote = note;
             } else if (searchInput.value.toLowerCase() === note.innerText.toLowerCase()) {
                 note.style.borderColor = 'blue';
                 note.style.borderStyle = 'solid';
                 searchInput.value = '';
                 windowSearch.style.display = 'none';
+                weatherBox.style.display = 'none';
                 activeNote = note;
 
                 headingTitle.innerText = note.innerText;
@@ -171,11 +187,18 @@ window.addEventListener('click', function(e) {
     const allNotes = document.querySelectorAll('.list');
     allNotes.forEach(function(note) {
 
-        if (e.target.innerText.toLowerCase() === 'calculator') {
+        if (['calculator', 'calculator app'].includes(e.target.innerText.toLowerCase())) {
             headingTitle.innerText = e.target.innerText.toUpperCase();
             textArea.style.display = 'none';
+            weatherBox.style.display = 'none';
             calculatorBox.style.display =  'flex';
+        } else if (['weather app', 'weather'].includes(e.target.innerText.toLowerCase())) {
+            headingTitle.innerText = e.target.innerText.toUpperCase();
+            textArea.style.display = 'none';
+            calculatorBox.style.display =  'none';
+            weatherBox.style.display = 'block';
         } else if (e.target === note) {
+            weatherBox.style.display = 'none';
             calculatorBox.style.display = 'none';
             textArea.style.display = 'inline-block';
             headingTitle.innerText = note.innerText;
@@ -205,7 +228,7 @@ deleteBtn.addEventListener('click', function(){
     if (hasDeleteBtn)  {
         allNotes.forEach(function(note){
             let image = document.createElement('img');
-            image.src = 'Image/trash-circle.svg';
+            image.src = '../Image/trash-circle.svg';
             image.style.width = '30px';
 
             const button = document.createElement('button');
