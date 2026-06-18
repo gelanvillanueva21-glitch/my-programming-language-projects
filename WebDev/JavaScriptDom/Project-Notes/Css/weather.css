@@ -128,3 +128,23 @@
     border: 2px var(--secondary-color) solid;
     border-radius: 12px;
 }
+
+.box {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#box2 {
+    display: none;
+}
+
+#box3 {
+    display: none;
+}
+
+#box4 {
+    display: none;
+}

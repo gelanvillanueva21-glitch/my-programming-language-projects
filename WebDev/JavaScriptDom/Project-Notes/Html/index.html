@@ -13,6 +13,9 @@
             .icon {
                 width: 6rem;
             }
+            .box p {
+                font-size: 2rem;
+            }
         </style>
 
         <!-- ICON -->
@@ -104,17 +107,20 @@
                                     </div>
                                     <div id="main-weather">
                                         <ul>
-                                            <li><img class="icon" src="../Image/weather.svg" alt="""></li>
-                                            <li><img class="icon" src="../Image/wind.svg" alt=""></li>
-                                            <li><img class="icon" src="../Image/temperature.svg" alt=""></li>
-                                            <li><img class="icon" src="../Image/time.svg" alt=""></li>
+                                            <li><img id="weather-btn" class="icon" src="../Image/weather.svg" alt="""></li>
+                                            <li><img id="wind-btn" class="icon" src="../Image/wind.svg" alt=""></li>
+                                            <li><img id="temperature-btn" class="icon" src="../Image/temperature.svg" alt=""></li>
+                                            <li><img id="time-btn" class="icon" src="../Image/time.svg" alt=""></li>
                                         </ul>
                                     </div>
                                     <div id="city-content-weather">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
+                                        <div class="box" id="box1">
+                                            <h2 id="h2"></h2>
+                                            <p id="paragraph"></p>
+                                        </div>
+                                        <div class="box" id="box2"></div>
+                                        <div class="box" id="box3"></div>
+                                        <div class="box" id="box4"></div>
                                     </div>
                                 </section>
                             </header>
