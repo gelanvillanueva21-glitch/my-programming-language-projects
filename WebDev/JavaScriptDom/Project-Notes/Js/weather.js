@@ -7,17 +7,38 @@
 const cityTitle = document.getElementById('heading-city');
 const searchCity = document.getElementById('search-city');
 const searchBtnCity = document.getElementById('search-btn');
-const h2 = document.getElementById('h2');
-const paragraph = document.getElementById('paragraph');
+
+
+const h2Weather = document.getElementById('h2-weather');
+const pWeather = document.getElementById('paragraph-weather');
+const h2Wind = document.getElementById('h2-wind');
+const pWind = document.getElementById('paragraph-wind');
+const h2Temperature = document.getElementById('h2-temperature');
+const pTemperature = document.getElementById('paragraph-temperature');
+const h2Time = document.getElementById('h2-time');
+const pTime = document.getElementById('paragraph-time');
+
+
 const weatherBtn = document.getElementById('weather-btn');
 const windBtn = document.getElementById('wind-btn');
 const temperatureBtn = document.getElementById('temperature-btn');
 const timeBtn = document.getElementById('time-btn');
 
 
+const weatherContentBox = document.getElementById('weather-description');
+const windBox = document.getElementById('wind-content');
+const temperatureBox = document.getElementById('temperature-content');
+const timeBox = document.getElementById('time-content');
+
+
 navigator.geolocation.getCurrentPosition(
     async function(position) {
         try {
+            windBox.style.display = 'none';
+            temperatureBox.style.display = 'none';
+            timeBox.style.display = 'none';
+            weatherContentBox.style.display = 'block';
+
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
             
@@ -42,14 +63,29 @@ navigator.geolocation.getCurrentPosition(
             }
             
             const weather = await dataResponse.json();
-            console.log("Weather:", weather);
-            
             const weatherCodeNum = weather.current_weather?.weathercode;
-            console.log("Weather Code:", weatherCodeNum);
             
             const result = getWeatherDescription(weatherCodeNum);
-            h2.innerText = `The Weather Condition here in the ${city} City.`;
-            paragraph.innerText = result;
+            h2Weather.innerText = `The Weather Condition here in the ${city} City.`;
+            pWeather.innerText = result;
+
+            const windSpeed = weather.current_weather?.windspeed;
+            h2Wind.innerText = `The WindSpeed Condition here in ${city}`;
+            pWind.innerText = `The WindSpeed is ${windSpeed}`;
+
+            const temperature = weather.current_weather.temperature;
+            h2Temperature.innerText = `The Temperature Condition her in the ${city} City`;
+            pTemperature.innerText = getTemperatureDescription(temperature);
+
+            const currentTime = weather.current_weather.time;
+            h2Time.innerText = `The Current Time in the ${city} City`;
+            const timeObject = new Date(currentTime);
+            const formattedTime = timeObject.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            pTime.innerText = formattedTime;
 
         } catch (error) {
             console.log("Error:", error);
@@ -71,9 +107,7 @@ async function getCoordinates(cityName) {
         return position;
 
     } catch (error) {
-
-
-
+        console.log(error);
     }
 
 }
@@ -83,15 +117,70 @@ async function getWeather(position) {
     try {
         const latitude = position.results[0].latitude;
         const longitude = position.results[0].longitude;
-        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=relativehumidity_2m,visibility_10m&timezone=auto`);
+        const response = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&timezone=auto`
+        );
         const weather = await response.json();
         return weather;
     } catch (error) {
-        
+        console.log(error);
     }
 
 }
 
+function getTemperatureDescription(temperature) {
+    
+    // HOT TEMPERATURES
+    if (temperature >= 35) {
+        return "It's extremely hot out there! Stay cool and hydrated!";
+    }
+    
+    if (temperature >= 30 && temperature < 35) {
+        return "It's very hot today - wear light clothes and stay in the shade!";
+    }
+    
+    if (temperature >= 25 && temperature < 30) {
+        return "It's warm and comfortable today - perfect for outdoor activities!";
+    }
+    
+    // WARM TEMPERATURES
+    if (temperature >= 20 && temperature < 25) {
+        return "It's a pleasant warm day - nice weather overall!";
+    }
+    
+    if (temperature >= 15 && temperature < 20) {
+        return "It's slightly warm - a light jacket might be comfortable!";
+    }
+    
+    // COOL TEMPERATURES
+    if (temperature >= 10 && temperature < 15) {
+        return "It's cool today - bring a sweater or light jacket!";
+    }
+    
+    if (temperature >= 5 && temperature < 10) {
+        return "It's chilly out there - wear a warm jacket!";
+    }
+    
+    // COLD TEMPERATURES
+    if (temperature >= 0 && temperature < 5) {
+        return "It's cold today - bundle up with layers!";
+    }
+    
+    if (temperature >= -5 && temperature < 0) {
+        return "It's very cold! Keep warm and avoid going out too long!";
+    }
+    
+    // VERY COLD TEMPERATURES
+    if (temperature >= -10 && temperature < -5) {
+        return "It's extremely cold - stay indoors if possible!";
+    }
+    
+    if (temperature < -10) {
+        return "Dangerously cold temperatures! Stay inside and keep warm!";
+    }
+    
+    return "Temperature information unavailable.";
+}
 
 function getWeatherDescription(weatherCode) {
 
@@ -153,4 +242,81 @@ function getWeatherDescription(weatherCode) {
 }
 
 
+searchBtnCity.addEventListener('click', async () => {
+
+    try {
+        let city = searchCity.value;
+
+        if (city !== undefined) {
+            const position = await getCoordinates(city);
+            console.log(position);
+            
+            const weather = await getWeather(position);
+            const weatherCodeNum = weather.current_weather?.weathercode;
+            const result = getWeatherDescription(weatherCodeNum);
+            cityTitle.innerText = city;
+            h2Weather.innerText = `The Weather Condition here in the ${city} City.`;
+            pWeather.innerText = result;
+
+            const windSpeed = weather.current_weather?.windspeed;
+            h2Wind.innerText = `The WindSpeed Condition here in ${city}`;
+            pWind.innerText = `The WindSpeed is ${windSpeed}`;
+
+            const temperature = weather.current_weather.temperature;
+            h2Temperature.innerText = `The Temperature Condition her in the ${city} City`;
+            pTemperature.innerText = getTemperatureDescription(temperature);
+
+            const currentTime = weather.current_weather.time;
+            h2Time.innerText = `The Current Time in the ${city} City`;
+            const timeObject = new Date(currentTime);
+            const formattedTime = timeObject.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            pTime.innerText = formattedTime;
+        } else {
+            cityTitle.innerText = 'Unknown City';
+        }
+    } catch (error) {
+        console.log(error);
+    }
+
+});
+
+weatherBtn.addEventListener('click', () => {
+
+    windBox.style.display = 'none';
+    temperatureBox.style.display = 'none';
+    timeBox.style.display = 'none';
+    weatherContentBox.style.display = 'block';
+
+});
+
+windBtn.addEventListener('click', () => {
+
+    windBox.style.display = 'block';
+    temperatureBox.style.display = 'none';
+    timeBox.style.display = 'none';
+    weatherContentBox.style.display = 'none';
+
+});
+
+temperatureBtn.addEventListener('click', () => {
+
+    windBox.style.display = 'none';
+    temperatureBox.style.display = 'block';
+    timeBox.style.display = 'none';
+    weatherContentBox.style.display = 'none';
+
+});
+
+timeBtn.addEventListener('click', () => {
+
+    windBox.style.display = 'none';
+    temperatureBox.style.display = 'none';
+    timeBox.style.display = 'block';
+    weatherContentBox.style.display = 'none';
+
+});
 
