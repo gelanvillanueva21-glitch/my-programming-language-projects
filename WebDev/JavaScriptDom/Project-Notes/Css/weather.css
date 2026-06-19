@@ -122,6 +122,9 @@
 }
 
 #city-content-weather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 5px auto;
     width: 95%;
     height: 225px;
@@ -131,20 +134,5 @@
 
 .box {
     text-align: center;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#box2 {
-    display: none;
-}
-
-#box3 {
-    display: none;
-}
-
-#box4 {
-    display: none;
+    padding: 20px;
 }
