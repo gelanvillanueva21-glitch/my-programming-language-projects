@@ -717,7 +717,12 @@ class Easy:
 
 
     def useArmor(self):
-        pass
+        if len(self.inventory.inventory["Armor"]) <= 0:
+            print("\nYou can't use an Armor because you dont have one in your Inventory\n")
+            return
+        
+        for i in self.inventory.inventory["Armor"]:
+            print(i)
 
 
 class Enemy:
