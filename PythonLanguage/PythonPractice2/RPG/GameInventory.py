@@ -47,7 +47,7 @@ class Inventory:
                     "Health Potion" : 50, 
                     "Mana Potion" : 100, 
                     "Damage Potion" : 150, 
-                    "Crit Potion" : 1.8}.items():
+                    "Crit Potion" : 2}.items():
                     if potion == i:
                         return y
         return f"\n{potion} not Found\n"

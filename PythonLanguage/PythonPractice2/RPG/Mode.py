@@ -161,6 +161,16 @@ class Easy:
             sys.exit()
 
 
+    def usePotion(self):
+        print("\n1. Health Potion\n2. Damage Potion\n3. Mana potion\n4. Critical Potion");
+        potion = int(input("> "))
+        
+
+
+    def useArmor(self):
+        pass
+
+
     def goHallWay(self):
         self.location_history.append(self.location)
         self.location = self.hallway
@@ -177,8 +187,11 @@ class Easy:
             length = len(enemy_list)
             random = ran.randint(0, (length - 1))
             self.inventory.printEquipedArmor(); self.inventory.printEquipedTool()
-            print(f"\nThere are {length} enemy\nYou must kill every single one of it\nItem You are using: {self.tool[0]}\n1. Attack")
+            print(f"\nThere are {length} enemy\nYou must kill every single one of it\nItem You are using: {self.tool[0]}\n")
             try:
+                print("5. Use Potion")
+                print("6. Equip Armor")
+                print("1. Basic Attack")
                 if len(self.tool[2]) == 2:
                     print(f"2. {self.tool[2][0]}")
                     choice = int(input("> "))
@@ -187,16 +200,23 @@ class Easy:
                         print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
                         time.sleep(1)
                     elif choice == 2:
-                        self.character["Mana"] = self.character["Mana"] - self.tool[3]
-                        time.sleep(5)
-                        for i in range(length):
-                            enemy_list[i][1][0] -= self.tool[2][-1]
+                        if self.character["Mana"] < self.tool[3]:
+                            print("\nYou Can't use skill because your mana is Low\n")
+                        else:
+                            self.character["Mana"] = self.character["Mana"] - self.tool[3]
+                            time.sleep(5)
+                            for i in range(length):
+                                enemy_list[i][1][0] -= self.tool[2][-1]
                 else:
                     choice = int(input("> "))
                     if choice == 1:
                         enemy_list[random][1][0] -= self.tool[1]
                         print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
                         time.sleep(1)
+                    elif choice == 5:
+                        pass
+                    elif choice == 6:
+                        pass
                 dead = [e for e in enemy_list if e[1][0] <= 0]
                 for e in dead:
                     print(f"\nYou killed {e[0]}!\n")
@@ -237,6 +257,76 @@ class Easy:
         if "Feild" in self.hasCleared:
             print("\nYou Cleared this level already.\n")
             return
+        enemy_list = self.enemy.enemySpawn("Easy")
+        print("\nEnemy Spawned\n")
+        for i in enemy_list:
+            print(i[0])
+        while len(enemy_list) > 0 and self.character["Health"] >= 1:
+            self.helperSystem()
+            length = len(enemy_list)
+            random = ran.randint(0, (length - 1))
+            self.inventory.printEquipedArmor(); self.inventory.printEquipedTool()
+            print(f"\nThere are {length} enemy\nYou must kill every single one of it\nItem You are using: {self.tool[0]}\n")
+            try:
+                print("5. Use Potion")
+                print("6. Equip Armor")
+                print("1. Basic Attack")
+                if len(self.tool[2]) == 2:
+                    print(f"2. {self.tool[2][0]}")
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 2:
+                        if self.character["Mana"] < self.tool[3]:
+                            print("\nYou Can't use skill because your mana is Low\n")
+                        else:
+                            self.character["Mana"] = self.character["Mana"] - self.tool[3]
+                            time.sleep(5)
+                            for i in range(length):
+                                enemy_list[i][1][0] -= self.tool[2][-1]
+                else:
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 5:
+                        pass
+                    elif choice == 6:
+                        pass
+                dead = [e for e in enemy_list if e[1][0] <= 0]
+                for e in dead:
+                    print(f"\nYou killed {e[0]}!\n")
+                    item_drop = self.chance("Easy")
+                    temporary_item = item_drop()
+                    if temporary_item:
+                        if temporary_item[1] is not None:
+                            print(temporary_item)
+                            self.inventory.addItem(temporary_item)
+                enemy_list = [e for e in enemy_list if e[1][0] > 0]
+                length = len(enemy_list)
+                if len(enemy_list) > 0:
+                    if ran.choices([True, False]):
+                        result = self.enemy.enemyAttack(enemy_list
+                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                        self.character["Health"] ,
+                        "Easy")
+                        if isinstance(result, int):
+                            self.character["Health"] = result
+                            print(f"\nYour health is now {self.character['Health']}\n")
+                        else:
+                            print(result)
+            except ValueError:
+                print("Value Error: Input Incorrect")
+                time.sleep(3)
+            except IndexError:
+                print("\nIndex Out Of Bound\n")
+            if len(enemy_list) == 0:
+                self.hasCleared.append("Feild")
+                print("\nYou Cleared This Level\n")
+            time.sleep(1)
 
 
     def goRegistrar(self):
@@ -246,6 +336,76 @@ class Easy:
         if "Registrar" in self.hasCleared:
             print("\nYou Cleared this level already.\n")
             return
+        enemy_list = self.enemy.enemySpawn("Easy")
+        print("\nEnemy Spawned\n")
+        for i in enemy_list:
+            print(i[0])
+        while len(enemy_list) > 0 and self.character["Health"] >= 1:
+            self.helperSystem()
+            length = len(enemy_list)
+            random = ran.randint(0, (length - 1))
+            self.inventory.printEquipedArmor(); self.inventory.printEquipedTool()
+            print(f"\nThere are {length} enemy\nYou must kill every single one of it\nItem You are using: {self.tool[0]}\n")
+            try:
+                print("5. Use Potion")
+                print("6. Equip Armor")
+                print("1. Basic Attack")
+                if len(self.tool[2]) == 2:
+                    print(f"2. {self.tool[2][0]}")
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 2:
+                        if self.character["Mana"] < self.tool[3]:
+                            print("\nYou Can't use skill because your mana is Low\n")
+                        else:
+                            self.character["Mana"] = self.character["Mana"] - self.tool[3]
+                            time.sleep(5)
+                            for i in range(length):
+                                enemy_list[i][1][0] -= self.tool[2][-1]
+                else:
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 5:
+                        pass
+                    elif choice == 6:
+                        pass
+                dead = [e for e in enemy_list if e[1][0] <= 0]
+                for e in dead:
+                    print(f"\nYou killed {e[0]}!\n")
+                    item_drop = self.chance("Easy")
+                    temporary_item = item_drop()
+                    if temporary_item:
+                        if temporary_item[1] is not None:
+                            print(temporary_item)
+                            self.inventory.addItem(temporary_item)
+                enemy_list = [e for e in enemy_list if e[1][0] > 0]
+                length = len(enemy_list)
+                if len(enemy_list) > 0:
+                    if ran.choices([True, False]):
+                        result = self.enemy.enemyAttack(enemy_list
+                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                        self.character["Health"] ,
+                        "Easy")
+                        if isinstance(result, int):
+                            self.character["Health"] = result
+                            print(f"\nYour health is now {self.character['Health']}\n")
+                        else:
+                            print(result)
+            except ValueError:
+                print("Value Error: Input Incorrect")
+                time.sleep(3)
+            except IndexError:
+                print("\nIndex Out Of Bound\n")
+            if len(enemy_list) == 0:
+                self.hasCleared.append("Registrar")
+                print("\nYou Cleared This Level\n")
+            time.sleep(1)
 
 
     def goClassroom(self):
@@ -255,6 +415,76 @@ class Easy:
         if "Classroom" in self.hasCleared:
             print("\nYou Cleared this level already.\n")
             return
+        enemy_list = self.enemy.enemySpawn("Easy")
+        print("\nEnemy Spawned\n")
+        for i in enemy_list:
+            print(i[0])
+        while len(enemy_list) > 0 and self.character["Health"] >= 1:
+            self.helperSystem()
+            length = len(enemy_list)
+            random = ran.randint(0, (length - 1))
+            self.inventory.printEquipedArmor(); self.inventory.printEquipedTool()
+            print(f"\nThere are {length} enemy\nYou must kill every single one of it\nItem You are using: {self.tool[0]}\n")
+            try:
+                print("5. Use Potion")
+                print("6. Equip Armor")
+                print("1. Basic Attack")
+                if len(self.tool[2]) == 2:
+                    print(f"2. {self.tool[2][0]}")
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 2:
+                        if self.character["Mana"] < self.tool[3]:
+                            print("\nYou Can't use skill because your mana is Low\n")
+                        else:
+                            self.character["Mana"] = self.character["Mana"] - self.tool[3]
+                            time.sleep(5)
+                            for i in range(length):
+                                enemy_list[i][1][0] -= self.tool[2][-1]
+                else:
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 5:
+                        pass
+                    elif choice == 6:
+                        pass
+                dead = [e for e in enemy_list if e[1][0] <= 0]
+                for e in dead:
+                    print(f"\nYou killed {e[0]}!\n")
+                    item_drop = self.chance("Easy")
+                    temporary_item = item_drop()
+                    if temporary_item:
+                        if temporary_item[1] is not None:
+                            print(temporary_item)
+                            self.inventory.addItem(temporary_item)
+                enemy_list = [e for e in enemy_list if e[1][0] > 0]
+                length = len(enemy_list)
+                if len(enemy_list) > 0:
+                    if ran.choices([True, False]):
+                        result = self.enemy.enemyAttack(enemy_list
+                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                        self.character["Health"] ,
+                        "Easy")
+                        if isinstance(result, int):
+                            self.character["Health"] = result
+                            print(f"\nYour health is now {self.character['Health']}\n")
+                        else:
+                            print(result)
+            except ValueError:
+                print("Value Error: Input Incorrect")
+                time.sleep(3)
+            except IndexError:
+                print("\nIndex Out Of Bound\n")
+            if len(enemy_list) == 0:
+                self.hasCleared.append("Classroom")
+                print("\nYou Cleared This Level\n")
+            time.sleep(1)
 
 
     def goAdmin(self):
@@ -264,6 +494,76 @@ class Easy:
         if "Admin" in self.hasCleared:
             print("\nYou Cleared this level already.\n")
             return
+        enemy_list = self.enemy.enemySpawn("Easy")
+        print("\nEnemy Spawned\n")
+        for i in enemy_list:
+            print(i[0])
+        while len(enemy_list) > 0 and self.character["Health"] >= 1:
+            self.helperSystem()
+            length = len(enemy_list)
+            random = ran.randint(0, (length - 1))
+            self.inventory.printEquipedArmor(); self.inventory.printEquipedTool()
+            print(f"\nThere are {length} enemy\nYou must kill every single one of it\nItem You are using: {self.tool[0]}\n")
+            try:
+                print("5. Use Potion")
+                print("6. Equip Armor")
+                print("1. Basic Attack")
+                if len(self.tool[2]) == 2:
+                    print(f"2. {self.tool[2][0]}")
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 2:
+                        if self.character["Mana"] < self.tool[3]:
+                            print("\nYou Can't use skill because your mana is Low\n")
+                        else:
+                            self.character["Mana"] = self.character["Mana"] - self.tool[3]
+                            time.sleep(5)
+                            for i in range(length):
+                                enemy_list[i][1][0] -= self.tool[2][-1]
+                else:
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 5:
+                        pass
+                    elif choice == 6:
+                        pass
+                dead = [e for e in enemy_list if e[1][0] <= 0]
+                for e in dead:
+                    print(f"\nYou killed {e[0]}!\n")
+                    item_drop = self.chance("Easy")
+                    temporary_item = item_drop()
+                    if temporary_item:
+                        if temporary_item[1] is not None:
+                            print(temporary_item)
+                            self.inventory.addItem(temporary_item)
+                enemy_list = [e for e in enemy_list if e[1][0] > 0]
+                length = len(enemy_list)
+                if len(enemy_list) > 0:
+                    if ran.choices([True, False]):
+                        result = self.enemy.enemyAttack(enemy_list
+                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                        self.character["Health"] ,
+                        "Easy")
+                        if isinstance(result, int):
+                            self.character["Health"] = result
+                            print(f"\nYour health is now {self.character['Health']}\n")
+                        else:
+                            print(result)
+            except ValueError:
+                print("Value Error: Input Incorrect")
+                time.sleep(3)
+            except IndexError:
+                print("\nIndex Out Of Bound\n")
+            if len(enemy_list) == 0:
+                self.hasCleared.append("Admin")
+                print("\nYou Cleared This Level\n")
+            time.sleep(1)
 
 
     def goGymnasium(self):
@@ -273,6 +573,76 @@ class Easy:
         if "Gymnasium" in self.hasCleared:
             print("\nYou Cleared this level already.\n")
             return
+        enemy_list = self.enemy.enemySpawn("Easy")
+        print("\nEnemy Spawned\n")
+        for i in enemy_list:
+            print(i[0])
+        while len(enemy_list) > 0 and self.character["Health"] >= 1:
+            self.helperSystem()
+            length = len(enemy_list)
+            random = ran.randint(0, (length - 1))
+            self.inventory.printEquipedArmor(); self.inventory.printEquipedTool()
+            print(f"\nThere are {length} enemy\nYou must kill every single one of it\nItem You are using: {self.tool[0]}\n")
+            try:
+                print("5. Use Potion")
+                print("6. Equip Armor")
+                print("1. Basic Attack")
+                if len(self.tool[2]) == 2:
+                    print(f"2. {self.tool[2][0]}")
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 2:
+                        if self.character["Mana"] < self.tool[3]:
+                            print("\nYou Can't use skill because your mana is Low\n")
+                        else:
+                            self.character["Mana"] = self.character["Mana"] - self.tool[3]
+                            time.sleep(5)
+                            for i in range(length):
+                                enemy_list[i][1][0] -= self.tool[2][-1]
+                else:
+                    choice = int(input("> "))
+                    if choice == 1:
+                        enemy_list[random][1][0] -= self.tool[1]
+                        print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
+                        time.sleep(1)
+                    elif choice == 5:
+                        pass
+                    elif choice == 6:
+                        pass
+                dead = [e for e in enemy_list if e[1][0] <= 0]
+                for e in dead:
+                    print(f"\nYou killed {e[0]}!\n")
+                    item_drop = self.chance("Easy")
+                    temporary_item = item_drop()
+                    if temporary_item:
+                        if temporary_item[1] is not None:
+                            print(temporary_item)
+                            self.inventory.addItem(temporary_item)
+                enemy_list = [e for e in enemy_list if e[1][0] > 0]
+                length = len(enemy_list)
+                if len(enemy_list) > 0:
+                    if ran.choices([True, False]):
+                        result = self.enemy.enemyAttack(enemy_list
+                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                        self.character["Health"] ,
+                        "Easy")
+                        if isinstance(result, int):
+                            self.character["Health"] = result
+                            print(f"\nYour health is now {self.character['Health']}\n")
+                        else:
+                            print(result)
+            except ValueError:
+                print("Value Error: Input Incorrect")
+                time.sleep(3)
+            except IndexError:
+                print("\nIndex Out Of Bound\n")
+            if len(enemy_list) == 0:
+                self.hasCleared.append("Gymnasium")
+                print("\nYou Cleared This Level\n")
+            time.sleep(1)
 
 
 class Enemy:
