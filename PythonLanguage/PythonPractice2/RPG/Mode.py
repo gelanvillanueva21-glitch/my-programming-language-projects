@@ -161,14 +161,6 @@ class Easy:
             sys.exit()
 
 
-    def usePotion(self):
-        print("\n1. Health Potion\n2. Damage Potion\n3. Mana potion\n4. Critical Potion");
-        potion = int(input("> "))
-        
-
-
-    def useArmor(self):
-        pass
 
 
     def goHallWay(self):
@@ -207,16 +199,34 @@ class Easy:
                             time.sleep(5)
                             for i in range(length):
                                 enemy_list[i][1][0] -= self.tool[2][-1]
+                    elif choice == 5:
+                        self.usePotion()
+                    elif choice == 6:
+                        self.useArmor()
+                    
                 else:
                     choice = int(input("> "))
                     if choice == 1:
                         enemy_list[random][1][0] -= self.tool[1]
                         print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
                         time.sleep(1)
+                        
+                        if len(enemy_list) > 0:
+                            if ran.choices([True, False]):
+                                result = self.enemy.enemyAttack(enemy_list
+                                [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                                self.character["Health"] ,
+                                "Easy")
+                                if isinstance(result, int):
+                                    self.character["Health"] = result
+                                    print(f"\nYour health is now {self.character['Health']}\n")
+                                else:
+                                    print(result)
+                        
                     elif choice == 5:
-                        pass
+                        self.usePotion()
                     elif choice == 6:
-                        pass
+                        self.useArmor()
                 dead = [e for e in enemy_list if e[1][0] <= 0]
                 for e in dead:
                     print(f"\nYou killed {e[0]}!\n")
@@ -228,17 +238,7 @@ class Easy:
                             self.inventory.addItem(temporary_item)
                 enemy_list = [e for e in enemy_list if e[1][0] > 0]
                 length = len(enemy_list)
-                if len(enemy_list) > 0:
-                    if ran.choices([True, False]):
-                        result = self.enemy.enemyAttack(enemy_list
-                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
-                        self.character["Health"] ,
-                        "Easy")
-                        if isinstance(result, int):
-                            self.character["Health"] = result
-                            print(f"\nYour health is now {self.character['Health']}\n")
-                        else:
-                            print(result)
+                
             except ValueError:
                 print("Value Error: Input Incorrect")
                 time.sleep(3)
@@ -286,16 +286,33 @@ class Easy:
                             time.sleep(5)
                             for i in range(length):
                                 enemy_list[i][1][0] -= self.tool[2][-1]
+                    elif choice == 5:
+                        self.usePotion()
+                    elif choice == 6:
+                        self.useArmor()
+                    
                 else:
                     choice = int(input("> "))
                     if choice == 1:
                         enemy_list[random][1][0] -= self.tool[1]
                         print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
                         time.sleep(1)
+                        
+                        if len(enemy_list) > 0:
+                            if ran.choices([True, False]):
+                                result = self.enemy.enemyAttack(enemy_list
+                                [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                                self.character["Health"] ,
+                                "Easy")
+                                if isinstance(result, int):
+                                    self.character["Health"] = result
+                                    print(f"\nYour health is now {self.character['Health']}\n")
+                                else:
+                                    print(result)
                     elif choice == 5:
-                        pass
+                        self.usePotion()
                     elif choice == 6:
-                        pass
+                        self.useArmor()
                 dead = [e for e in enemy_list if e[1][0] <= 0]
                 for e in dead:
                     print(f"\nYou killed {e[0]}!\n")
@@ -307,17 +324,6 @@ class Easy:
                             self.inventory.addItem(temporary_item)
                 enemy_list = [e for e in enemy_list if e[1][0] > 0]
                 length = len(enemy_list)
-                if len(enemy_list) > 0:
-                    if ran.choices([True, False]):
-                        result = self.enemy.enemyAttack(enemy_list
-                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
-                        self.character["Health"] ,
-                        "Easy")
-                        if isinstance(result, int):
-                            self.character["Health"] = result
-                            print(f"\nYour health is now {self.character['Health']}\n")
-                        else:
-                            print(result)
             except ValueError:
                 print("Value Error: Input Incorrect")
                 time.sleep(3)
@@ -365,16 +371,33 @@ class Easy:
                             time.sleep(5)
                             for i in range(length):
                                 enemy_list[i][1][0] -= self.tool[2][-1]
+                    elif choice == 5:
+                        self.usePotion()
+                    elif choice == 6:
+                        self.useArmor()
+                    
                 else:
                     choice = int(input("> "))
                     if choice == 1:
                         enemy_list[random][1][0] -= self.tool[1]
                         print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
                         time.sleep(1)
+                        
+                        if len(enemy_list) > 0:
+                            if ran.choices([True, False]):
+                                result = self.enemy.enemyAttack(enemy_list
+                                [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                                self.character["Health"] ,
+                                "Easy")
+                                if isinstance(result, int):
+                                    self.character["Health"] = result
+                                    print(f"\nYour health is now {self.character['Health']}\n")
+                                else:
+                                    print(result)
                     elif choice == 5:
-                        pass
+                        self.usePotion()
                     elif choice == 6:
-                        pass
+                        self.useArmor()
                 dead = [e for e in enemy_list if e[1][0] <= 0]
                 for e in dead:
                     print(f"\nYou killed {e[0]}!\n")
@@ -386,17 +409,6 @@ class Easy:
                             self.inventory.addItem(temporary_item)
                 enemy_list = [e for e in enemy_list if e[1][0] > 0]
                 length = len(enemy_list)
-                if len(enemy_list) > 0:
-                    if ran.choices([True, False]):
-                        result = self.enemy.enemyAttack(enemy_list
-                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
-                        self.character["Health"] ,
-                        "Easy")
-                        if isinstance(result, int):
-                            self.character["Health"] = result
-                            print(f"\nYour health is now {self.character['Health']}\n")
-                        else:
-                            print(result)
             except ValueError:
                 print("Value Error: Input Incorrect")
                 time.sleep(3)
@@ -444,16 +456,33 @@ class Easy:
                             time.sleep(5)
                             for i in range(length):
                                 enemy_list[i][1][0] -= self.tool[2][-1]
+                    elif choice == 5:
+                        self.usePotion()
+                    elif choice == 6:
+                        self.useArmor()
+                    
                 else:
                     choice = int(input("> "))
                     if choice == 1:
                         enemy_list[random][1][0] -= self.tool[1]
                         print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
                         time.sleep(1)
+                        
+                        if len(enemy_list) > 0:
+                            if ran.choices([True, False]):
+                                result = self.enemy.enemyAttack(enemy_list
+                                [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                                self.character["Health"] ,
+                                "Easy")
+                                if isinstance(result, int):
+                                    self.character["Health"] = result
+                                    print(f"\nYour health is now {self.character['Health']}\n")
+                                else:
+                                    print(result)
                     elif choice == 5:
-                        pass
+                        self.usePotion()
                     elif choice == 6:
-                        pass
+                        self.useArmor()
                 dead = [e for e in enemy_list if e[1][0] <= 0]
                 for e in dead:
                     print(f"\nYou killed {e[0]}!\n")
@@ -465,17 +494,6 @@ class Easy:
                             self.inventory.addItem(temporary_item)
                 enemy_list = [e for e in enemy_list if e[1][0] > 0]
                 length = len(enemy_list)
-                if len(enemy_list) > 0:
-                    if ran.choices([True, False]):
-                        result = self.enemy.enemyAttack(enemy_list
-                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
-                        self.character["Health"] ,
-                        "Easy")
-                        if isinstance(result, int):
-                            self.character["Health"] = result
-                            print(f"\nYour health is now {self.character['Health']}\n")
-                        else:
-                            print(result)
             except ValueError:
                 print("Value Error: Input Incorrect")
                 time.sleep(3)
@@ -523,16 +541,33 @@ class Easy:
                             time.sleep(5)
                             for i in range(length):
                                 enemy_list[i][1][0] -= self.tool[2][-1]
+                    elif choice == 5:
+                        self.usePotion()
+                    elif choice == 6:
+                        self.useArmor()
+                    
                 else:
                     choice = int(input("> "))
                     if choice == 1:
                         enemy_list[random][1][0] -= self.tool[1]
                         print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
                         time.sleep(1)
+                        
+                        if len(enemy_list) > 0:
+                            if ran.choices([True, False]):
+                                result = self.enemy.enemyAttack(enemy_list
+                                [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                                self.character["Health"] ,
+                                "Easy")
+                                if isinstance(result, int):
+                                    self.character["Health"] = result
+                                    print(f"\nYour health is now {self.character['Health']}\n")
+                                else:
+                                    print(result)
                     elif choice == 5:
-                        pass
+                        self.usePotion()
                     elif choice == 6:
-                        pass
+                        self.useArmor()
                 dead = [e for e in enemy_list if e[1][0] <= 0]
                 for e in dead:
                     print(f"\nYou killed {e[0]}!\n")
@@ -544,17 +579,6 @@ class Easy:
                             self.inventory.addItem(temporary_item)
                 enemy_list = [e for e in enemy_list if e[1][0] > 0]
                 length = len(enemy_list)
-                if len(enemy_list) > 0:
-                    if ran.choices([True, False]):
-                        result = self.enemy.enemyAttack(enemy_list
-                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
-                        self.character["Health"] ,
-                        "Easy")
-                        if isinstance(result, int):
-                            self.character["Health"] = result
-                            print(f"\nYour health is now {self.character['Health']}\n")
-                        else:
-                            print(result)
             except ValueError:
                 print("Value Error: Input Incorrect")
                 time.sleep(3)
@@ -602,16 +626,33 @@ class Easy:
                             time.sleep(5)
                             for i in range(length):
                                 enemy_list[i][1][0] -= self.tool[2][-1]
+                    elif choice == 5:
+                        self.usePotion()
+                    elif choice == 6:
+                        self.useArmor()
+                    
                 else:
                     choice = int(input("> "))
                     if choice == 1:
                         enemy_list[random][1][0] -= self.tool[1]
                         print(f"\nYou damaged {enemy_list[random][0]} with {self.tool[1]}")
                         time.sleep(1)
+                        
+                        if len(enemy_list) > 0:
+                            if ran.choices([True, False]):
+                                result = self.enemy.enemyAttack(enemy_list
+                                [ran.randint(0, len(enemy_list) - 1)][1][1], 
+                                self.character["Health"] ,
+                                "Easy")
+                                if isinstance(result, int):
+                                    self.character["Health"] = result
+                                    print(f"\nYour health is now {self.character['Health']}\n")
+                                else:
+                                    print(result)
                     elif choice == 5:
-                        pass
+                        self.usePotion()
                     elif choice == 6:
-                        pass
+                        self.useArmor()
                 dead = [e for e in enemy_list if e[1][0] <= 0]
                 for e in dead:
                     print(f"\nYou killed {e[0]}!\n")
@@ -623,17 +664,6 @@ class Easy:
                             self.inventory.addItem(temporary_item)
                 enemy_list = [e for e in enemy_list if e[1][0] > 0]
                 length = len(enemy_list)
-                if len(enemy_list) > 0:
-                    if ran.choices([True, False]):
-                        result = self.enemy.enemyAttack(enemy_list
-                        [ran.randint(0, len(enemy_list) - 1)][1][1], 
-                        self.character["Health"] ,
-                        "Easy")
-                        if isinstance(result, int):
-                            self.character["Health"] = result
-                            print(f"\nYour health is now {self.character['Health']}\n")
-                        else:
-                            print(result)
             except ValueError:
                 print("Value Error: Input Incorrect")
                 time.sleep(3)
@@ -643,6 +673,51 @@ class Easy:
                 self.hasCleared.append("Gymnasium")
                 print("\nYou Cleared This Level\n")
             time.sleep(1)
+
+
+
+    def usePotion(self):
+        try:
+            
+            if len(self.inventory.inventory["Potion"]) <= 0:
+                print("\nThere is no Potion in the Inventory\n")
+                return
+            
+            potions = {
+            1 : "Health Potion",
+            2 : "Damage Potion",
+            3 : "Mana Potion",
+            4 : "Critical Potion"
+            }
+            print("\n1. Health Potion\n2. Damage Potion\n3. Mana Potion\n4. Critical Potion");
+            potion = int(input("> "))
+            result = self.inventory.usePotion(potions.get(potion))
+            
+            if isinstance(result, str):
+                print(result)
+                return
+            elif potions.get(potion) == "Health Potion":
+                self.character["Health"] += result
+                print(result)
+                print(self.character["Health"])
+            elif potions.get(potion) == "Damage Potion":
+                self.tool[1] += result
+                print(result)
+                print(self.tool[1])
+            elif potions.get(potion) == "Mana Potion":
+                self.character["Mana"] += result
+                print(result)
+                print(self.character["Mana"])
+            elif potions.get(potion) == "Critical Potion":
+                self.tool[1] *= result
+                print(result)
+                print(self.tool[1])
+        except ValueError:
+            print('\nValue Error: Input Incorrect\n')
+
+
+    def useArmor(self):
+        pass
 
 
 class Enemy:
