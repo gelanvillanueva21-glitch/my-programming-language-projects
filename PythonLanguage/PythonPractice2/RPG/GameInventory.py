@@ -64,7 +64,8 @@ class Inventory:
                         for i, j in y.items():
                             if text[1] == i:
                                 j.append(armorType)
-                                break
+                                self.itemSort()
+                                return
 
 
     def removeItem(self, items):
@@ -174,8 +175,7 @@ class Inventory:
             for i in item:
                 if isinstance(i, list):
                     for x in i:
-                        string = ", ".join(x)
-                        print(f"    {string}")
+                        print(f"    {x}")
                 else:
                     print(f"    {i}")
 
@@ -197,3 +197,43 @@ class Inventory:
         for item in self.inventory.values():
             totalItem += len(item)
         return totalItem == 0
+
+
+    def itemSort(self):
+        for x, y in self.inventory.items():
+            if x == "Armor":
+                continue
+            else:
+                self.mergeSort(y)
+
+
+    def mergeSort(self, array):
+        if len(array) <= 1:
+            return array
+        
+        middleIndex = len(array) // 2
+        leftHalf = array[:middleIndex]
+        rightHalf = array[middleIndex:]
+        
+        self.mergeSort(leftHalf)
+        self.mergeSort(rightHalf)
+        i = j = k = 0
+        
+        while i < len(leftHalf) and j < len(rightHalf):
+            if leftHalf[i] <= rightHalf[j]:
+                array[k] = leftHalf[i]
+                i += 1
+            else:
+                array[k] = rightHalf[j]
+                j += 1
+            k += 1
+        
+        while i < len(leftHalf):
+            array[k] = leftHalf[i]
+            i += 1
+            k += 1
+        
+        while j < len(rightHalf):
+            array[k] = rightHalf[j]
+            j += 1
+            k += 1

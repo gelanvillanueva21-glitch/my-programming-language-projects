@@ -1,11 +1,17 @@
-import Mode as mode
+import GameInventory as inventory
 
-
-warrior = {
-        "Character": "Warrior",
-        "Health" : 500,
-        "Mana" : 1000,
-    }
-
-easy = mode.Easy(warrior)
-easy.useArmor()
+inv = inventory.Inventory()
+inv.addItem(["Potion" ,"Health Potion"])
+inv.addItem(["Potion" ,"Damage Potion"])
+inv.addItem(["Potion" ,"Damage Potion"])
+inv.addItem(["Potion" ,"Critical Potion"])
+inv.addItem(["Potion" ,"Damage Potion"])
+inv.addItem(["Armor" ,"Diamond Helmet"])
+inv.addItem(["Armor" ,"Diamond Leggings"])
+inv.addItem(["Armor" ,"Iron Helmet"])
+inv.addItem(["Armor" ,"Gold Helmet"])
+inv.addItem(["Armor" ,"Diamond Helmet"])
+inv.addItem(["Armor" ,"Excalibur Helmet"])
+inv.addItem(["Armor" ,"Iron Chestplate"])
+inv.printItems()
+print(inv.isEmpty())
