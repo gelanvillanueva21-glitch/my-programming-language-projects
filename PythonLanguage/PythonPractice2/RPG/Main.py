@@ -1,6 +1,7 @@
 import GameDescription
 import Mode
 import time
+import sys
 
 class GamePlay:
     def __init__(self):
@@ -51,7 +52,7 @@ class GamePlay:
                 elif choice == 2:
                     GameDescription.description()
                 elif choice == 3:
-                    pass
+                    sys.exit()
                 else:
                     print(f"\n\n{choice} not found!\n\n")
                     time.sleep(1)

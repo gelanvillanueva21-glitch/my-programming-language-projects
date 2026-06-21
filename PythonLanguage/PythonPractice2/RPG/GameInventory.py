@@ -104,7 +104,7 @@ class Inventory:
         return f"\n{potion} not Found\n"
 
     def equipArmor(self, armor):
-        if self.inventory["Armor"] == []:
+        if self.isArmorEmpty():
             print("\nArmor Is Empty, Can't Equip Armor\n")
             return
         for x, y in self.armorMap.items():
@@ -142,7 +142,7 @@ class Inventory:
             return
         for item in self.inventory["Tools"]:
             if item == tools:
-                self.equipedItem["Tools"].remove(tools)
+                self.inventory["Tools"].remove(tools)
                 print(f"\n{tools} successfully Used\n")
                 for i, y in {
                     "Iron Sword" : 100,
@@ -162,7 +162,7 @@ class Inventory:
 
 
     def printEquipedTool(self):
-        if self.equipedItem["Tools"] is None:
+        if self.equipedItem["Tool"] is None:
             print("\nYou dont have a tool")
         else:
             print("\n_____Tool_____")
@@ -193,10 +193,15 @@ class Inventory:
 
 
     def isEmpty(self):
-        totalItem = 0
-        for item in self.inventory.values():
-            totalItem += len(item)
-        return totalItem == 0
+        total = 0
+        for key, item in self.inventory.items():
+            if key == 'Armor':
+                for i in item:
+                    for y in i:
+                        total += len(y)
+            else:
+                total += len(item)
+        return total == 0
 
 
     def itemSort(self):
@@ -237,3 +242,22 @@ class Inventory:
             array[k] = rightHalf[j]
             j += 1
             k += 1
+
+
+    def isArmorEmpty(self):
+        total = 0
+        for key, item in self.inventory.items():
+            if key == 'Armor':
+                for i in item:
+                    for y in i:
+                        total += len(y)
+        return total == 0
+
+
+    def printArmor(self):
+        for value, item in self.inventory.items():
+            print("Armor:")
+            for i in item:
+                if isinstance(i, list):
+                    for x in i:
+                        print(f"    {x}")
