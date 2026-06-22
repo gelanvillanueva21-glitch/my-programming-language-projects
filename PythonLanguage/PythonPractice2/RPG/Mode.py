@@ -28,6 +28,7 @@ class Easy:
         self.inventory = Inventory()
         self.chance = chance.Chance()
         self.tool = self.inventory.equipedItem["Tool"]
+        self.armor = self.inventory.equipedItem["Armor"]
         self.hashLcation = {
             
             "Lobby" : "Lobby",
@@ -165,7 +166,7 @@ class Easy:
 
 
     def battleSystem(self, locationName):
-        enemy_list = self.enemy.enemySpawn("Easy")
+        enemy_list = self.enemy.enemySpawn()
         print("\nEnemy Spawned\n")
         for i in enemy_list:
             print(i[0])
@@ -211,7 +212,7 @@ class Easy:
                                 result = self.enemy.enemyAttack(enemy_list
                                 [ran.randint(0, len(enemy_list) - 1)][1][1], 
                                 self.character["Health"] ,
-                                "Easy")
+                                "Easy", self.armor)
                                 if isinstance(result, int):
                                     self.character["Health"] = result
                                     print(f"\nYour health is now {self.character['Health']}\n")
@@ -397,42 +398,38 @@ class Easy:
 class Enemy:
     def __init__(self):
         self.enemy = {
-        "Easy" : {
-            "Slime" : [100, 10],
-            "Goblin" : [150, 20],
-            "Skeleton" : [200, 30],
-            "Zombie" : [200, 40],
-            },
-        "Medium" : {
-            "Vampire" : [300, 50],
-            "Werewolf" : [300, 75],
+        "Enemy" : {
+            "Slime" : [100, 20],
+            "Goblin" : [150, 30],
+            "Skeleton" : [200, 40],
+            "Zombie" : [200, 50],
+            "Vampire" : [300, 150],
+            "Werewolf" : [300, 100],
             "Giant Zombie" : [500, 100],
             "Demon" : [650, 150],
-            "Demonic Knight Boss" : [5000, 250]
-            },
-        "Hard" : {
+            "Demonic Knight Boss" : [5000, 250],
             "Demon Vampire" : [1000, 150],
             "Possessed Werewolf" : [1000, 200],
             "Possessed Giant Zombie" : [1500, 250],
             "Devil Boss" : [10000, 500],
             "Demonic King Boss" : [15000, 1000],
             "Demon Lord Of The Last Boss" : [100000, 5000]
-            }
+            },
         }
 
 
-    def enemySpawn(self, difficulty):
+    def enemySpawn(self):
         number_of_enemies = ran.randint(5, 10)
         enemy_list = []
         for i in range(number_of_enemies):
-            enemy = list(self.enemy[difficulty].keys())
+            enemy = list(self.enemy["Enemy"].keys())
             random_enemy = ran.choice(enemy)
-            enemy_stat = self.enemy[difficulty].get(random_enemy)
+            enemy_stat = self.enemy["Enemy"].get(random_enemy)
             enemy_list.append([random_enemy, enemy_stat.copy()])
         return enemy_list
 
 
-    def enemyAttack(self, enemy_health, char_health ,difficulty):
+    def enemyAttack(self, enemy_health, char_health ,difficulty, armor):
         temporary_diff_var = {
             "Easy" : 5,
             "Medium" : 4,
@@ -448,6 +445,13 @@ class Enemy:
                     time.sleep(1)
                     return "\nyou Dodged!\n"
         else:
+            armorStat = sum({k: sum(j) for k, j in armor.items() if isinstance(j, list)}.values())
             print("\nYou got hit!\n")
             time.sleep(1)
+            if armorStat:
+                damageLeft = armorStat - enemy_health
+                if damageLeft < 0:
+                    return max(char_health + damageLeft, 0)
+                else:
+                    return char_health
             return char_health - enemy_health
